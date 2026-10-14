@@ -401,7 +401,7 @@
   </footer>
 
   <!-- Background music: Pachelbel Canon in D (public domain), original piano + violin arrangement, plays softly; visitor can turn it on/off -->
-  <audio id="bgm" src="canon-in-d.mp3" preload="auto" loop></audio>
+  <audio id="bgm" src="canon-in-d-soft.mp3" preload="auto" loop></audio>
   <button type="button" class="music-btn" id="musicBtn" aria-pressed="false" aria-label="Play background music">
     <span class="music-icon" aria-hidden="true">
       <svg class="ic-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
@@ -434,7 +434,7 @@
     // interacts, so we try on load and otherwise start softly on their first tap/click/key.
     (function () {
       var audio = document.getElementById('bgm'), btn = document.getElementById('musicBtn'), label = document.getElementById('musicLabel');
-      var TARGET = 0.35, fadeTimer = null, pref = null, resumeOnShow = false;
+      var TARGET = 0.22, fadeTimer = null, pref = null, resumeOnShow = false;
       try { pref = localStorage.getItem('ncs-music'); } catch (e) {}
       function save(v) { try { localStorage.setItem('ncs-music', v); } catch (e) {} }
       function setUI(on) {
@@ -455,10 +455,10 @@
         audio.volume = 0;
         var p = audio.play();
         if (p && p.then) {
-          return p.then(function () { setUI(true); fadeTo(TARGET, 2500); return true; })
+          return p.then(function () { setUI(true); fadeTo(TARGET, 7000); return true; })
                   .catch(function () { setUI(false); return false; });
         }
-        setUI(true); fadeTo(TARGET, 2500); return Promise.resolve(true);
+        setUI(true); fadeTo(TARGET, 7000); return Promise.resolve(true);
       }
       function stop() { setUI(false); fadeTo(0, 700, function () { audio.pause(); }); }
       btn.addEventListener('click', function (e) {
