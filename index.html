@@ -188,6 +188,21 @@
       .features ul { grid-template-columns: 1fr; }
       .features li { border-left: 0 !important; }
     }
+    /* Music toggle */
+    .music-btn { position: fixed; right: 20px; bottom: 20px; z-index: 60; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 8px 18px 8px 10px; border-radius: 999px; border: 1px solid rgba(169, 120, 47, .45); background: rgba(251, 247, 242, .94); backdrop-filter: blur(8px); color: var(--ink); font-family: var(--sans); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; box-shadow: 0 8px 24px rgba(74, 51, 36, .14); transition: background .2s, transform .2s; }
+    .music-btn:hover { transform: translateY(-1px); background: #fff; }
+    .music-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .music-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--gold); color: #fff; display: grid; place-items: center; }
+    .music-icon svg { width: 16px; height: 16px; }
+    .music-icon .bars { display: none; gap: 2px; align-items: flex-end; height: 14px; }
+    .music-icon .bars i { width: 3px; background: #fff; border-radius: 2px; animation: eq 1.1s ease-in-out infinite; }
+    .music-icon .bars i:nth-child(2) { animation-delay: .25s; }
+    .music-icon .bars i:nth-child(3) { animation-delay: .5s; }
+    .music-btn.on .ic-note { display: none; }
+    .music-btn.on .bars { display: flex; }
+    @keyframes eq { 0%, 100% { height: 4px; } 50% { height: 14px; } }
+    @media (max-width: 720px) { .music-label { display: none; } .music-btn { padding: 8px; right: 14px; bottom: 14px; } }
+    @media (prefers-reduced-motion: reduce) { .music-icon .bars i { animation: none; height: 10px; } }
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
   </style>
 </head>
@@ -385,6 +400,16 @@
     </div>
   </footer>
 
+  <!-- Background music: original piano + violin piece, plays softly; visitor can turn it on/off -->
+  <audio id="bgm" src="nile-theme.mp3" preload="auto" loop></audio>
+  <button type="button" class="music-btn" id="musicBtn" aria-pressed="false" aria-label="Play background music">
+    <span class="music-icon" aria-hidden="true">
+      <svg class="ic-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
+      <span class="bars"><i></i><i></i><i></i></span>
+    </span>
+    <span class="music-label" id="musicLabel">Music off</span>
+  </button>
+
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
     // Mobile menu
@@ -404,6 +429,64 @@
     document.getElementById('annPrev').onclick = function () { show(i - 1); };
     document.getElementById('annNext').onclick = function () { show(i + 1); };
     setInterval(function () { show(i + 1); }, 6000);
+
+    // Background music with on/off toggle. Browsers block sound until the visitor
+    // interacts, so we try on load and otherwise start softly on their first tap/click/key.
+    (function () {
+      var audio = document.getElementById('bgm'), btn = document.getElementById('musicBtn'), label = document.getElementById('musicLabel');
+      var TARGET = 0.35, fadeTimer = null, pref = null, resumeOnShow = false;
+      try { pref = localStorage.getItem('ncs-music'); } catch (e) {}
+      function save(v) { try { localStorage.setItem('ncs-music', v); } catch (e) {} }
+      function setUI(on) {
+        btn.classList.toggle('on', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? 'Turn background music off' : 'Turn background music on');
+        label.textContent = on ? 'Music on' : 'Music off';
+      }
+      function fadeTo(v, ms, done) {
+        clearInterval(fadeTimer);
+        var start = audio.volume, steps = Math.max(1, Math.round(ms / 40)), k = 0;
+        fadeTimer = setInterval(function () {
+          k++; audio.volume = Math.max(0, Math.min(1, start + (v - start) * (k / steps)));
+          if (k >= steps) { clearInterval(fadeTimer); if (done) done(); }
+        }, 40);
+      }
+      function play() {
+        audio.volume = 0;
+        var p = audio.play();
+        if (p && p.then) {
+          return p.then(function () { setUI(true); fadeTo(TARGET, 2500); return true; })
+                  .catch(function () { setUI(false); return false; });
+        }
+        setUI(true); fadeTo(TARGET, 2500); return Promise.resolve(true);
+      }
+      function stop() { setUI(false); fadeTo(0, 700, function () { audio.pause(); }); }
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        removeFirstTouch();
+        if (audio.paused || !btn.classList.contains('on')) { save('on'); play(); }
+        else { save('off'); stop(); }
+      });
+      function firstTouch(e) {
+        if (btn.contains(e.target)) return;
+        removeFirstTouch();
+        if (pref !== 'off' && audio.paused) play();
+      }
+      function removeFirstTouch() {
+        ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.removeEventListener(t, firstTouch, true); });
+      }
+      setUI(false);
+      if (pref !== 'off') {
+        play().then(function (ok) {
+          if (!ok) ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.addEventListener(t, firstTouch, { capture: true, passive: true }); });
+        });
+      }
+      // pause while the tab is hidden, resume when the visitor comes back
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) { resumeOnShow = !audio.paused; if (resumeOnShow) audio.pause(); }
+        else if (resumeOnShow) { audio.play().catch(function () {}); }
+      });
+    })();
   </script>
 </body>
 </html>
