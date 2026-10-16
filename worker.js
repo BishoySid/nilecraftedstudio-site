@@ -1,20 +1,21 @@
 /**
  * Nile Crafted Studio — serves the static site from this repo.
- * While the site is private, every request needs the site password first.
+ * Password lock is available but currently switched off (see fetch below).
  */
 export default {
   async fetch(request, env) {
-    const locked = await passwordGate(request, env);
-    if (locked) return locked;
+    // Password lock is OFF. To turn it back on, uncomment the next two lines.
+    // const locked = await passwordGate(request, env);
+    // if (locked) return locked;
     return noindex(await env.ASSETS.fetch(request));
   }
 };
 
 // ---------------------------------------------------------------------------
-// Password lock (temporary, while the site is private).
+// Password lock (currently switched off).
 // The password lives in the Worker secret SITE_PASSWORD (Cloudflare dashboard →
 // this Worker → Settings → Variables and Secrets). Any username works.
-// To open the site to the public, remove the two `locked` lines at the top of fetch().
+// To lock the site again, uncomment the two `locked` lines at the top of fetch().
 // ---------------------------------------------------------------------------
 async function passwordGate(request, env) {
   const password = env.SITE_PASSWORD;
