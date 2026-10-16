@@ -1,0 +1,11 @@
+{
+  "name": "nilecraftedstudio",
+  "compatibility_date": "2026-07-31",
+  "main": "worker.js",
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+    // Send every request through worker.js first so the password lock applies to all pages.
+    "run_worker_first": true
+  }
+}
