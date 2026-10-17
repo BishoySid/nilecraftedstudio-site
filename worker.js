@@ -7,7 +7,7 @@ export default {
     // Password lock is OFF. To turn it back on, uncomment the next two lines.
     // const locked = await passwordGate(request, env);
     // if (locked) return locked;
-    return noindex(await env.ASSETS.fetch(request));
+    return finish(await env.ASSETS.fetch(request));
   }
 };
 
@@ -55,10 +55,9 @@ async function sameText(a, b) {
   return diff === 0;
 }
 
-function noindex(res) {
-  const out = new Response(res.body, res);
-  out.headers.set('X-Robots-Tag', 'noindex, nofollow');
-  return secure(out);
+// The site is public, so search engines are allowed to index it.
+function finish(res) {
+  return secure(new Response(res.body, res));
 }
 
 // Security headers (applied to every response the Worker serves).
@@ -70,6 +69,6 @@ function secure(out) {
   h.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   h.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()');
   h.set('Cross-Origin-Opener-Policy', 'same-origin');
-  h.set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'none'; upgrade-insecure-requests");
+  h.set('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'none'; upgrade-insecure-requests");
   return out;
 }

@@ -18,6 +18,7 @@
   var CSS = [
     '.ncq-open{overflow:hidden}',
     '.ncq-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:flex-end;justify-content:center;background:rgba(42,31,26,.55);opacity:0;transition:opacity .2s ease}',
+    '.ncq-overlay[hidden]{display:none}',
     '.ncq-overlay.is-in{opacity:1}',
     '@media(min-width:640px){.ncq-overlay{align-items:center;padding:24px}}',
     '.ncq-dialog{--ink:#3b2a1e;--muted:#6e5644;--gold:#a87a3d;--cream:#fbf7f2;--line:#e3d5c6;background:var(--cream);color:var(--ink);width:100%;max-width:520px;max-height:92vh;overflow:auto;border-radius:20px 20px 0 0;padding:24px 20px calc(20px + env(safe-area-inset-bottom));box-shadow:0 -10px 40px rgba(0,0,0,.18);transform:translateY(24px);transition:transform .25s ease;font-family:"Jost",system-ui,sans-serif}',
@@ -109,18 +110,19 @@
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   }
 
-  function open(category) {
+  function open(category, date) {
     if (!overlay) build();
     if (done) { done.remove(); done = null; form.hidden = false; }
     if (category) {
       var sel = form.querySelector('#ncq-cat');
       Array.prototype.forEach.call(sel.options, function (o) { if (o.text === category) sel.value = o.text; });
     }
+    if (date) form.querySelector('#ncq-date').value = date;
     lastFocus = document.activeElement;
     overlay.hidden = false;
     document.documentElement.classList.add('ncq-open');
     requestAnimationFrame(function () { overlay.classList.add('is-in'); });
-    setTimeout(function () { form.querySelector('#ncq-cat').focus(); }, 60);
+    setTimeout(function () { form.querySelector(date ? '#ncq-notes' : '#ncq-cat').focus(); }, 60);
   }
 
   function close() {
@@ -179,6 +181,15 @@
     if (!a) return;
     e.preventDefault();
     open(a.getAttribute('data-category'));
+  });
+
+  // Quick start bar under the hero: carries the chosen category and date into the form
+  document.addEventListener('submit', function (e) {
+    var q = e.target.closest && e.target.closest('[data-quickstart]');
+    if (!q) return;
+    e.preventDefault();
+    var c = q.querySelector('[name=qs-cat]'), d = q.querySelector('[name=qs-date]');
+    open(c && c.value, d && d.value);
   });
 
   function checkHash() { if (location.hash === '#quote') open(); }
