@@ -20,10 +20,10 @@ export default {
 async function passwordGate(request, env) {
   const password = env.SITE_PASSWORD;
   if (!password) {
-    return new Response('This site is private.', {
+    return secure(new Response('This site is private.', {
       status: 503,
       headers: { 'X-Robots-Tag': 'noindex, nofollow', 'Cache-Control': 'no-store' },
-    });
+    }));
   }
   const header = request.headers.get('Authorization') || '';
   if (header.startsWith('Basic ')) {
@@ -33,14 +33,14 @@ async function passwordGate(request, env) {
       if (await sameText(supplied, password)) return null; // allowed
     } catch (_) { /* malformed header → ask again */ }
   }
-  return new Response('Password required.', {
+  return secure(new Response('Password required.', {
     status: 401,
     headers: {
       'WWW-Authenticate': 'Basic realm="Private preview", charset="UTF-8"',
       'X-Robots-Tag': 'noindex, nofollow',
       'Cache-Control': 'no-store',
     },
-  });
+  }));
 }
 
 async function sameText(a, b) {
@@ -58,5 +58,18 @@ async function sameText(a, b) {
 function noindex(res) {
   const out = new Response(res.body, res);
   out.headers.set('X-Robots-Tag', 'noindex, nofollow');
+  return secure(out);
+}
+
+// Security headers (applied to every response the Worker serves).
+function secure(out) {
+  const h = out.headers;
+  h.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  h.set('X-Content-Type-Options', 'nosniff');
+  h.set('X-Frame-Options', 'DENY');
+  h.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  h.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()');
+  h.set('Cross-Origin-Opener-Policy', 'same-origin');
+  h.set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'none'; upgrade-insecure-requests");
   return out;
 }

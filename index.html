@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Security: only this site, Google Fonts and nothing else may load here. If you add Google Analytics later, add https://www.googletagmanager.com to script-src and https://*.google-analytics.com https://*.googletagmanager.com to connect-src and img-src. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Nile Crafted Studio | Custom Gifts, Apparel &amp; Keepsakes</title>
   <meta name="description" content="Nile Crafted Studio: personalized apparel, gifts, keepsakes, event pieces and business orders. Made with heart, designed for your story. Local delivery on Staten Island and shipping across the US.">
   <meta property="og:title" content="Nile Crafted Studio">
@@ -68,7 +71,7 @@
     .burger { display: none; background: none; border: 0; cursor: pointer; }
 
     /* Hero */
-    .hero { position: relative; aspect-ratio: 1536 / 463; min-height: 440px; background: #6a5240 url("hero.jpg") right center / cover no-repeat; display: flex; align-items: center; overflow: hidden; }
+    .hero { position: relative; width: 100%; aspect-ratio: 1536 / 463; min-height: 440px; background: #6a5240 url("hero.jpg") right center / cover no-repeat; display: flex; align-items: center; overflow: hidden; }
     .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(60, 40, 28, .72) 0%, rgba(60, 40, 28, .5) 26%, rgba(60, 40, 28, 0) 42%); }
     .hero .wrap { position: relative; width: 100%; }
     .hero-copy { max-width: 600px; color: #fff; }
@@ -154,8 +157,14 @@
     .center { text-align: center; margin-top: 44px; }
 
     .gallery { background: var(--cream); }
-    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
     .gallery-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+    .gallery-more { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 20px; text-align: center; color: #fbf7f2; background: radial-gradient(circle at 30% 20%, #5a4130 0%, #3e2a1d 70%); border: 1px solid rgba(168, 122, 61, .55); outline: 1px solid rgba(168, 122, 61, .35); outline-offset: -8px; transition: transform .2s; }
+    .gallery-more:hover { transform: translateY(-2px); }
+    .gallery-more svg { width: 40px; height: 40px; color: #e8cc92; }
+    .gallery-more .eyebrow { color: #e8cc92; font-size: 11px; }
+    .gallery-more strong { font-family: var(--serif); font-weight: 500; font-size: clamp(20px, 1.7vw, 25px); line-height: 1.15; }
+    .gallery-more-btn { margin-top: 4px; font-family: var(--sans); font-size: 12px; letter-spacing: .08em; padding: 10px 16px; border-radius: 999px; background: #e6c3b8; color: var(--ink); }
 
     .contact { text-align: center; }
     .contact-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 300px)); justify-content: center; gap: 20px; }
@@ -178,12 +187,12 @@
     .foot small { display: block; width: 100%; font-family: var(--sans); font-size: 12px; letter-spacing: .08em; opacity: .7; margin-top: 18px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .12); }
 
     /* Responsive */
-    @media (max-width: 1180px) {
+    @media (max-width: 1380px) {
       .btn-ig span { display: none; }
       .btn-ig { padding: 12px; }
       .menu { gap: 22px; }
     }
-    @media (max-width: 980px) {
+    @media (max-width: 1120px) {
       .burger { display: grid; place-items: center; width: 40px; height: 40px; }
       .menu { position: absolute; top: 76px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--ivory); border-bottom: 1px solid var(--line); padding: 8px 20px 18px; display: none; }
       .menu.open { display: flex; }
@@ -195,6 +204,7 @@
       .features li { justify-content: flex-start; }
       .about-grid, .steps { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-more { grid-column: 1 / -1; aspect-ratio: auto; padding: 32px 20px; }
     }
     @media (max-width: 720px) {
       .hero { flex-direction: column; align-items: stretch; min-height: 0; aspect-ratio: auto; background: var(--brown); }
@@ -210,6 +220,13 @@
       .btn-ig { display: none; }
     }
     @media (min-width: 721px) { .hero-img { display: none; } }
+    @media (max-width: 380px) {
+      .nav { gap: 10px; }
+      .brand { gap: 8px; }
+      .brand img { width: 40px; height: 40px; }
+      .brand span { font-size: 13px; letter-spacing: .08em; }
+      .btn { white-space: normal; text-align: center; justify-content: center; }
+    }
     @media (max-width: 520px) {
       .cats { grid-template-columns: 1fr; }
       .features ul { grid-template-columns: 1fr; }
@@ -270,11 +287,11 @@
         <a class="icon-btn hide-sm" href="#contact" aria-label="Contact us">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
         </a>
-        <a class="icon-btn" href="#custom-orders" aria-label="Start an order">
+        <a class="icon-btn" href="#custom-orders" data-quote aria-label="Start a custom order">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h14l-1 13H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
           <span class="badge">0</span>
         </a>
-        <a class="btn btn-ig" href="https://www.instagram.com/nilecraftedstudio/" target="_blank" rel="noopener">
+        <a class="btn btn-ig" href="https://www.instagram.com/nilecraftedstudio/" target="_blank" rel="noopener noreferrer">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
           <span>Follow on Instagram</span>
         </a>
@@ -302,22 +319,22 @@
     </section>
 
     <section class="cats" id="shop" aria-label="Shop collections">
-      <a class="cat" href="#custom-orders">
+      <a class="cat" href="#custom-orders" data-quote data-category="Personalized Apparel">
         <img src="cat-apparel.jpg" alt="Cream sweatshirt embroidered with MAMA and a heart" loading="lazy">
         <div class="cat-body"><div><h3>Personalized<br>Apparel</h3><span class="eyebrow">Shop Now &rarr;</span></div>
           <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
       </a>
-      <a class="cat" href="#custom-orders">
+      <a class="cat" href="#custom-orders" data-quote data-category="Gifts &amp; Keepsakes">
         <img src="cat-gifts.jpg" alt="Monogrammed mug beside a ribbon-tied gift box" loading="lazy">
         <div class="cat-body"><div><h3>Gifts &amp;<br>Keepsakes</h3><span class="eyebrow">Shop Now &rarr;</span></div>
           <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
       </a>
-      <a class="cat" href="#custom-orders">
+      <a class="cat" href="#custom-orders" data-quote data-category="Events &amp; Celebrations">
         <img src="cat-events.jpg" alt="Acrylic table number sign among candles and peonies" loading="lazy">
         <div class="cat-body"><div><h3>Events &amp;<br>Celebrations</h3><span class="eyebrow">Shop Now &rarr;</span></div>
           <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
       </a>
-      <a class="cat" href="#custom-orders">
+      <a class="cat" href="#custom-orders" data-quote data-category="Business &amp; Group Orders">
         <img src="cat-business.jpg" alt="Folded apparel embroidered with the Nile Crafted Studio logo" loading="lazy">
         <div class="cat-body"><div><h3>Business &amp;<br>Group Orders</h3><span class="eyebrow">Shop Now &rarr;</span></div>
           <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
@@ -391,7 +408,7 @@
               <p>Creativity, design, and bringing joy to others have always been part of my passion. Nile Crafted Studio was created to turn meaningful moments into personalized creations that people can cherish forever.</p>
               <p>From custom apparel and elegant gifts to event details and personalized keepsakes, every piece is made with love, creativity, and attention to detail. Thank you for supporting my small business and being part of this journey.</p>
             <p class="sig">Randa</p>
-            <a class="btn" href="https://www.instagram.com/nilecraftedstudio/" target="_blank" rel="noopener">DM to bring your vision to life</a>
+            <a class="btn" href="https://www.instagram.com/nilecraftedstudio/" target="_blank" rel="noopener noreferrer">DM to bring your vision to life</a>
           </div>
         </article>
       </div>
@@ -409,7 +426,7 @@
           <div class="step"><h3>Approve your design</h3><p>We send you a preview to review, and adjust it until it's exactly right.</p></div>
           <div class="step"><h3>Receive your piece</h3><p>Local delivery on Staten Island and nearby, or shipping anywhere in the US.</p></div>
         </div>
-        <div class="center"><a class="btn" href="#contact">Start a Custom Order &nbsp;&rarr;</a></div>
+        <div class="center"><a class="btn" href="#contact" data-quote>Start a Custom Order &nbsp;&rarr;</a></div>
       </div>
     </section>
 
@@ -424,6 +441,12 @@
           <img src="cat-gifts.jpg" alt="Monogrammed mug and gift box" loading="lazy">
           <img src="cat-events.jpg" alt="Table number sign for an event" loading="lazy">
           <img src="cat-business.jpg" alt="Embroidered business apparel" loading="lazy">
+          <a class="gallery-more" href="https://www.instagram.com/nilecraftedstudio/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            <span class="eyebrow">See more</span>
+            <strong>More of our work on Instagram</strong>
+            <span class="gallery-more-btn">@nilecraftedstudio &rarr;</span>
+          </a>
         </div>
       </div>
     </section>
@@ -446,7 +469,7 @@
             <span class="eyebrow">Email</span>
             <strong>nilecraftedstudio@gmail.com</strong>
           </a>
-          <a class="contact-card" href="https://www.instagram.com/nilecraftedstudio/" target="_blank" rel="noopener">
+          <a class="contact-card" href="https://www.instagram.com/nilecraftedstudio/" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
             <span class="eyebrow">Instagram</span>
             <strong>@nilecraftedstudio</strong>
@@ -466,7 +489,7 @@
       <nav aria-label="Footer">
         <a href="#shop">Shop</a><a href="#custom-orders">Custom Orders</a><a href="#about">About</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a>
       </nav>
-      <div class="foot-contact"><a href="tel:+18624140499">(862) 414-0499</a><a href="mailto:nilecraftedstudio@gmail.com">nilecraftedstudio@gmail.com</a><a href="https://www.instagram.com/nilecraftedstudio/" target="_blank" rel="noopener">Instagram @nilecraftedstudio</a></div>
+      <div class="foot-contact"><a href="tel:+18624140499">(862) 414-0499</a><a href="mailto:nilecraftedstudio@gmail.com">nilecraftedstudio@gmail.com</a><a href="https://www.instagram.com/nilecraftedstudio/" target="_blank" rel="noopener noreferrer">Instagram @nilecraftedstudio</a></div>
       <small>&copy; <span id="yr">2026</span> Nile Crafted Studio &nbsp;&middot;&nbsp; Custom &bull; Creative &bull; Always Yours</small>
     </div>
   </footer>
@@ -565,9 +588,10 @@
       if (!f) return;
       if (!('IntersectionObserver' in window)) { f.classList.add('is-visible'); return; }
       f.classList.add('will-animate');
-      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { f.classList.add('is-visible'); io.disconnect(); } }); }, { threshold: 0.35 });
-      io.observe(f);
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { f.classList.add('is-visible'); io.disconnect(); } }); }, { threshold: 0.6 });
+      io.observe(f.querySelector('.founder-title') || f);
     })();
   </script>
+  <script src="nile-quote.js" defer></script>
 </body>
 </html>
