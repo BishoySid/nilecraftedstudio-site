@@ -64,12 +64,10 @@
     master = ctx.createGain(); master.gain.value = 0;
     comp = ctx.createDynamicsCompressor();
     comp.threshold.value = -18; comp.ratio.value = 3; comp.attack.value = 0.003; comp.release.value = 0.25;
-    var verb = ctx.createConvolver(); verb.buffer = impulse(ctx);
-    wet = ctx.createGain(); wet.gain.value = 0.28;
-    var dry = ctx.createGain(); dry.gain.value = 0.85;
+    var dry = ctx.createGain(); dry.gain.value = 1;
     var tone = ctx.createBiquadFilter(); tone.type = 'lowpass'; tone.frequency.value = 7500;
-    tone.connect(dry); tone.connect(verb); verb.connect(wet);
-    dry.connect(comp); wet.connect(comp); comp.connect(master); master.connect(ctx.destination);
+    tone.connect(dry);
+    dry.connect(comp); comp.connect(master); master.connect(ctx.destination);
     master._in = tone;
     loadViolin();
   }
