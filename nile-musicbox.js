@@ -1,7 +1,7 @@
 /*!
  * Nile Crafted Studio - music box background tune.
- * Pachelbel's Canon in D (public domain), arranged for a music box with a soft violin, played
- * live in the browser with Web Audio (no audio file to download).
+ * Pachelbel's Canon in D (public domain), arranged for a music box with a soft solo violin,
+ * played live in the browser with Web Audio. Violin notes: VSCO 2 Community Edition (CC0).
  * Works with the #musicBtn toggle; remembers the visitor's on/off choice.
  */
 (function () {
@@ -71,6 +71,7 @@
     tone.connect(dry); tone.connect(verb); verb.connect(wet);
     dry.connect(comp); wet.connect(comp); comp.connect(master); master.connect(ctx.destination);
     master._in = tone;
+    loadViolin();
   }
   // one music-box tine: bright metallic strike that rings and fades
   var PARTIALS = [[1, 1, 1.9], [2, 0.32, 0.7], [3, 0.12, 0.35], [5.4, 0.07, 0.1], [8.9, 0.035, 0.05]];
@@ -90,25 +91,31 @@
       o.start(t); o.stop(t + dec * 2.5 + 0.05);
     });
   }
-  // soft violin: two slightly detuned bowed tones, gentle swell and a late, light vibrato
-  function bow(t, midi, vel, len) {
-    var f = 440 * Math.pow(2, (midi - 69) / 12), amp = vel * 0.032, end = t + len + 0.25;
-    var g = ctx.createGain(), lp = ctx.createBiquadFilter(), body = ctx.createBiquadFilter();
-    lp.type = 'lowpass'; lp.frequency.value = Math.min(2600, f * 6); lp.Q.value = 0.5;
-    body.type = 'peaking'; body.frequency.value = 1100; body.Q.value = 1.2; body.gain.value = 4;
-    g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(amp, t + 0.45);
-    g.gain.setValueAtTime(amp, Math.max(t + 0.45, end - 0.7));
-    g.gain.linearRampToValueAtTime(0.0001, end);
-    var vib = ctx.createOscillator(), vibAmt = ctx.createGain();
-    vib.frequency.value = 5.2; vibAmt.gain.setValueAtTime(0, t); vibAmt.gain.linearRampToValueAtTime(9, t + 0.6);
-    vib.connect(vibAmt);
-    [-5, 5].forEach(function (cents) {
-      var o = ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.value = f; o.detune.value = cents;
-      vibAmt.connect(o.detune); o.connect(lp); o.start(t); o.stop(end + 0.05);
+  // soft violin: a real solo violin (VSCO 2 Community Edition, CC0), bowed softly with vibrato
+  var VLN = { A3: [57, 7.526, 3.0], C4: [60, 1.173, 20.8], E4: [64, 1.909, 4.1], G4: [67, 3.473, -4.6], A4: [69, 2.347, -14.3], C5: [72, 0.816, -2.4], E5: [76, 3.246, 5.8] };
+  var VIOLIN_LEVEL = 3.0, vlnBufs = {};
+  function loadViolin() {
+    Object.keys(VLN).forEach(function (k) {
+      fetch('violin-' + k + '.wav').then(function (r) { return r.arrayBuffer(); }).then(function (data) {
+        ctx.decodeAudioData(data, function (buf) { vlnBufs[k] = buf; }, function () {});
+      }).catch(function () {});
     });
-    lp.connect(body); body.connect(g); g.connect(master._in);
-    vib.start(t); vib.stop(end + 0.05);
+  }
+  function bow(t, midi, vel, len) {
+    var best = null, dist = 99;
+    Object.keys(vlnBufs).forEach(function (k) { var d = Math.abs(midi - VLN[k][0]); if (d < dist) { dist = d; best = k; } });
+    if (!best || dist > 3) return;
+    var s = VLN[best], end = t + len + 0.3, amp = vel * VIOLIN_LEVEL * s[1];
+    var src = ctx.createBufferSource(), g = ctx.createGain();
+    src.buffer = vlnBufs[best];
+    src.playbackRate.value = Math.pow(2, (midi - s[0]) / 12 - s[2] / 1200);
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(amp, t + 0.3);
+    g.gain.setValueAtTime(amp, Math.max(t + 0.3, end - 0.65));
+    g.gain.linearRampToValueAtTime(0.0001, end);
+    var hp = ctx.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 160;
+    src.connect(hp); hp.connect(g); g.connect(master._in);
+    src.start(t); src.stop(end + 0.05);
   }
   function schedule() {
     var horizon = ctx.currentTime + 0.6;
