@@ -11,7 +11,8 @@
   var AC = window.AudioContext || window.webkitAudioContext;
   if (!AC) { btn.style.display = 'none'; return; }
 
-  var TEMPO = 62;            // beats per minute: slow and dreamy
+  var TEMPO = 76;            // beats per minute: light and happy
+  var TRANSPOSE = 5;         // semitones up from D major (plays in G major, brighter)
   var BEAT = 60 / TEMPO;
   var VOLUME = 0.5;          // master level once faded in
   var pref = null;
@@ -121,7 +122,7 @@
       var ev = score[nextIdx];
       var t = startAt + (loopN * LOOP + ev[0]) * BEAT + (Math.random() - 0.5) * 0.012;
       if (t > horizon) break;
-      if (t > ctx.currentTime - 0.05) { if (ev[3]) bow(t, ev[1], ev[2], ev[3] * BEAT); else pluck(t, ev[1], ev[2]); }
+      if (t > ctx.currentTime - 0.05) { if (ev[3]) bow(t, ev[1] + TRANSPOSE, ev[2], ev[3] * BEAT); else pluck(t, ev[1] + TRANSPOSE, ev[2]); }
       nextIdx++;
       if (nextIdx >= score.length) { nextIdx = 0; loopN++; }
     }
