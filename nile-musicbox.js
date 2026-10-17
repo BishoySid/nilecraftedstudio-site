@@ -1,6 +1,6 @@
 /*!
  * Nile Crafted Studio - music box background tune.
- * Pachelbel's Canon in D (public domain), arranged for a music box and played
+ * Pachelbel's Canon in D (public domain), arranged for a music box with a soft violin, played
  * live in the browser with Web Audio (no audio file to download).
  * Works with the #musicBtn toggle; remembers the visitor's on/off choice.
  */
@@ -42,6 +42,12 @@
     }
   });
   var LOOP = VARS.length * cycleBeats;   // beats per full loop
+  // soft violin: sustained canon line under the music box, entering after the first pass
+  var VIOLIN = [null, ['F#4', 'E4', 'D4', 'C#4', 'B3', 'A3', 'B3', 'C#4'], ['D5', 'C#5', 'B4', 'A4', 'G4', 'F#4', 'G4', 'A4'], ['F#4', 'E4', 'D4', 'C#4', 'B3', 'A3', 'B3', 'C#4'], ['A4', 'G4', 'F#4', 'E4', 'D4', 'C#4', 'D4', 'E4']];
+  VIOLIN.forEach(function (line, vi) {
+    if (!line) return;
+    line.forEach(function (n, i) { score.push([vi * cycleBeats + i * 2, N[n], 0.6, 2]); });
+  });
 
   // ---- audio graph ----
   var ctx = null, master, comp, wet, timer = null, startAt = 0, nextIdx = 0, loopN = 0, playing = false;
@@ -84,13 +90,33 @@
       o.start(t); o.stop(t + dec * 2.5 + 0.05);
     });
   }
+  // soft violin: two slightly detuned bowed tones, gentle swell and a late, light vibrato
+  function bow(t, midi, vel, len) {
+    var f = 440 * Math.pow(2, (midi - 69) / 12), amp = vel * 0.032, end = t + len + 0.25;
+    var g = ctx.createGain(), lp = ctx.createBiquadFilter(), body = ctx.createBiquadFilter();
+    lp.type = 'lowpass'; lp.frequency.value = Math.min(2600, f * 6); lp.Q.value = 0.5;
+    body.type = 'peaking'; body.frequency.value = 1100; body.Q.value = 1.2; body.gain.value = 4;
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(amp, t + 0.45);
+    g.gain.setValueAtTime(amp, Math.max(t + 0.45, end - 0.7));
+    g.gain.linearRampToValueAtTime(0.0001, end);
+    var vib = ctx.createOscillator(), vibAmt = ctx.createGain();
+    vib.frequency.value = 5.2; vibAmt.gain.setValueAtTime(0, t); vibAmt.gain.linearRampToValueAtTime(9, t + 0.6);
+    vib.connect(vibAmt);
+    [-5, 5].forEach(function (cents) {
+      var o = ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.value = f; o.detune.value = cents;
+      vibAmt.connect(o.detune); o.connect(lp); o.start(t); o.stop(end + 0.05);
+    });
+    lp.connect(body); body.connect(g); g.connect(master._in);
+    vib.start(t); vib.stop(end + 0.05);
+  }
   function schedule() {
     var horizon = ctx.currentTime + 0.6;
     while (true) {
       var ev = score[nextIdx];
       var t = startAt + (loopN * LOOP + ev[0]) * BEAT + (Math.random() - 0.5) * 0.012;
       if (t > horizon) break;
-      if (t > ctx.currentTime - 0.05) pluck(t, ev[1], ev[2]);
+      if (t > ctx.currentTime - 0.05) { if (ev[3]) bow(t, ev[1], ev[2], ev[3] * BEAT); else pluck(t, ev[1], ev[2]); }
       nextIdx++;
       if (nextIdx >= score.length) { nextIdx = 0; loopN++; }
     }
