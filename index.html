@@ -536,8 +536,7 @@
     </div>
   </footer>
 
-  <!-- Background music: Pachelbel Canon in D (public domain), original piano + violin arrangement, plays softly; visitor can turn it on/off -->
-  <audio id="bgm" src="canon-in-d-soft.mp3" preload="metadata" loop></audio>
+  <!-- Background music: Pachelbel Canon in D (public domain) as a music box, played live by nile-musicbox.js; visitor can turn it on/off -->
   <button type="button" class="music-btn" id="musicBtn" aria-pressed="false" aria-label="Play background music">
     <span class="music-icon" aria-hidden="true">
       <svg class="ic-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
@@ -565,64 +564,6 @@
     document.getElementById('annPrev').onclick = function () { show(i - 1); };
     document.getElementById('annNext').onclick = function () { show(i + 1); };
     setInterval(function () { show(i + 1); }, 6000);
-
-    // Background music with on/off toggle. Browsers block sound until the visitor
-    // interacts, so we try on load and otherwise start softly on their first tap/click/key.
-    (function () {
-      var audio = document.getElementById('bgm'), btn = document.getElementById('musicBtn'), label = document.getElementById('musicLabel');
-      var TARGET = 0.22, fadeTimer = null, pref = null, resumeOnShow = false;
-      try { pref = localStorage.getItem('ncs-music'); } catch (e) {}
-      function save(v) { try { localStorage.setItem('ncs-music', v); } catch (e) {} }
-      function setUI(on) {
-        btn.classList.toggle('on', on);
-        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-        btn.setAttribute('aria-label', on ? 'Turn background music off' : 'Turn background music on');
-        label.textContent = on ? 'Music on' : 'Music off';
-      }
-      function fadeTo(v, ms, done) {
-        clearInterval(fadeTimer);
-        var start = audio.volume, steps = Math.max(1, Math.round(ms / 40)), k = 0;
-        fadeTimer = setInterval(function () {
-          k++; audio.volume = Math.max(0, Math.min(1, start + (v - start) * (k / steps)));
-          if (k >= steps) { clearInterval(fadeTimer); if (done) done(); }
-        }, 40);
-      }
-      function play() {
-        audio.volume = 0;
-        var p = audio.play();
-        if (p && p.then) {
-          return p.then(function () { setUI(true); fadeTo(TARGET, 7000); return true; })
-                  .catch(function () { setUI(false); return false; });
-        }
-        setUI(true); fadeTo(TARGET, 7000); return Promise.resolve(true);
-      }
-      function stop() { setUI(false); fadeTo(0, 700, function () { audio.pause(); }); }
-      btn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        removeFirstTouch();
-        if (audio.paused || !btn.classList.contains('on')) { save('on'); play(); }
-        else { save('off'); stop(); }
-      });
-      function firstTouch(e) {
-        if (btn.contains(e.target)) return;
-        removeFirstTouch();
-        if (pref !== 'off' && audio.paused) play();
-      }
-      function removeFirstTouch() {
-        ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.removeEventListener(t, firstTouch, true); });
-      }
-      setUI(false);
-      if (pref !== 'off') {
-        play().then(function (ok) {
-          if (!ok) ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.addEventListener(t, firstTouch, { capture: true, passive: true }); });
-        });
-      }
-      // pause while the tab is hidden, resume when the visitor comes back
-      document.addEventListener('visibilitychange', function () {
-        if (document.hidden) { resumeOnShow = !audio.paused; if (resumeOnShow) audio.pause(); }
-        else if (resumeOnShow) { audio.play().catch(function () {}); }
-      });
-    })();
   </script>
   <script>
     (function () {
@@ -635,5 +576,6 @@
     })();
   </script>
   <script src="nile-quote.js" defer></script>
+  <script src="nile-musicbox.js" defer></script>
 </body>
 </html>
