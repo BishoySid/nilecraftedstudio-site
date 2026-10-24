@@ -15,9 +15,8 @@
   var TRANSPOSE = 5;         // semitones up from D major (plays in G major, brighter)
   var BEAT = 60 / TEMPO;
   var VOLUME = 0.5;          // master level once faded in
-  var pref = null;
-  try { pref = localStorage.getItem('ncs-music'); } catch (e) {}
-  function save(v) { try { localStorage.setItem('ncs-music', v); } catch (e) {} }
+  try { localStorage.removeItem('ncs-music'); } catch (e) {}   // old auto-start preference, no longer used
+  function save(v) {}
 
   // ---- score: [beat, midi note, velocity] ----
   var N = { 'F#3': 54, 'G3': 55, 'A3': 57, 'B3': 59, 'C#4': 61, 'D4': 62, 'E4': 64, 'F#4': 66, 'G4': 67, 'A4': 69, 'B4': 71, 'C#5': 73, 'D5': 74, 'E5': 76, 'F#5': 78, 'G5': 79, 'A5': 81, 'B5': 83, 'C#6': 85, 'D6': 86 };
@@ -163,19 +162,10 @@
     e.stopPropagation(); removeFirstTouch();
     if (btn.classList.contains('on')) { save('off'); stop(); } else { save('on'); play(); }
   });
-  function firstTouch(e) {
-    if (btn.contains(e.target)) return;
-    removeFirstTouch();
-    if (pref !== 'off' && !btn.classList.contains('on')) play();
-  }
-  function removeFirstTouch() {
-    ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.removeEventListener(t, firstTouch, true); });
-  }
+  function removeFirstTouch() {}
+  // Music is OFF by default on every device and only starts when the visitor taps the music button,
+  // so it never interrupts their own podcast, music or call.
   setUI(false);
-  if (pref !== 'off') {
-    // browsers only allow sound after the visitor interacts, so start on their first tap/click/key
-    ['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.addEventListener(t, firstTouch, { capture: true, passive: true }); });
-  }
   document.addEventListener('visibilitychange', function () {
     if (!ctx || !playing) return;
     if (document.hidden) ctx.suspend(); else if (btn.classList.contains('on')) ctx.resume();

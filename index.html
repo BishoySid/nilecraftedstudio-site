@@ -19,7 +19,7 @@
   <meta property="og:site_name" content="Nile Crafted Studio">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://www.nilecraftedstudio.com/">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Nile Crafted Studio","url":"https://www.nilecraftedstudio.com/","logo":"https://www.nilecraftedstudio.com/logo.jpg","image":"https://www.nilecraftedstudio.com/logo.jpg","telephone":"+1-862-414-0499","email":"nilecraftedstudio@gmail.com","founder":{"@type":"Person","name":"Randa"},"areaServed":["Staten Island, NY","United States"],"sameAs":["https://www.instagram.com/nilecraftedstudio/"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Nile Crafted Studio","url":"https://www.nilecraftedstudio.com/","logo":"https://www.nilecraftedstudio.com/logo.jpg","image":"https://www.nilecraftedstudio.com/logo.jpg","telephone":"+1-862-414-0499","email":"nilecraftedstudio@gmail.com","founder":{"@type":"Person","name":"Randa"},"areaServed":["Staten Island, NY","United States","Worldwide"],"sameAs":["https://www.instagram.com/nilecraftedstudio/"]}</script>
   <meta name="theme-color" content="#f7f0e8">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -97,16 +97,18 @@
     .play i svg { width: 13px; height: 13px; }
 
     /* Category tiles */
-    .cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 10px; background: var(--cream); }
+    .cats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; padding: 10px; background: var(--cream); }
     .cat { position: relative; display: block; background: #3e2a1d; overflow: hidden; aspect-ratio: 370 / 300; color: #fff; }
     .cat img { position: absolute; top: 0; left: 0; width: 100%; height: 66%; object-fit: cover; object-position: center top; transition: transform .6s ease; }
     .cat::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(62, 42, 29, 0) 22%, rgba(62, 42, 29, .55) 46%, rgba(62, 42, 29, .96) 66%, #3e2a1d 100%); }
     .cat:hover img { transform: scale(1.04); }
+    .cat-bridal img { object-position: center 30%; }
     .cat-body { position: absolute; left: 24px; right: 24px; bottom: 22px; z-index: 1; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
     .cat h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(22px, 1.9vw, 27px); line-height: 1.05; text-transform: uppercase; letter-spacing: .01em; }
     .cat .eyebrow { display: inline-block; margin-top: 14px; font-size: 13px; }
     .cat .arrow { width: 38px; height: 38px; flex-shrink: 0; border: 1.5px solid rgba(255, 255, 255, .9); border-radius: 50%; display: grid; place-items: center; transition: background .2s; }
     .cat:hover .arrow { background: rgba(255, 255, 255, .15); }
+    @media (min-width: 1121px) { .cat-body { left: 16px; right: 16px; gap: 8px; } .cat h3 { font-size: clamp(18px, 1.5vw, 24px); } .cat .arrow { width: 32px; height: 32px; } }
     .arrow svg { width: 15px; height: 15px; }
 
     /* Features strip */
@@ -254,6 +256,8 @@
       .menu a { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); }
       .menu .sub { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: 0; padding: 0 0 0 14px; background: none; }
       .cats { grid-template-columns: repeat(2, 1fr); }
+      .cats .cat-bridal { grid-column: 1 / -1; aspect-ratio: 740 / 300; }
+      .cats .cat-bridal img { height: 100%; object-position: center 40%; }
       .features ul { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
       .features li:nth-child(3) { border-left: 0; }
       .features li { justify-content: flex-start; }
@@ -284,6 +288,8 @@
     }
     @media (max-width: 520px) {
       .cats { grid-template-columns: 1fr; }
+      .cats .cat-bridal { aspect-ratio: 370 / 300; }
+      .cats .cat-bridal img { height: 66%; }
       .features ul { grid-template-columns: 1fr; }
       .features li { border-left: 0 !important; }
     }
@@ -292,12 +298,12 @@
     .js-reveal .reveal.in { opacity: 1; transform: none; }
     /* Quick start bar */
     .quick { background: var(--ivory); border-bottom: 1px solid var(--line); }
-    .quick form { display: flex; align-items: flex-end; justify-content: center; gap: 18px; flex-wrap: wrap; padding-top: 26px; padding-bottom: 26px; }
-    .quick .q-intro { margin-right: 10px; }
+    .quick form { display: flex; align-items: flex-end; justify-content: center; gap: 14px; flex-wrap: wrap; padding-top: 26px; padding-bottom: 26px; }
+    .quick .q-intro { margin-right: 6px; }
     .quick .q-intro b { display: block; font-weight: 500; font-size: 24px; line-height: 1.1; }
     .quick .q-intro .eyebrow { color: var(--gold); }
     .quick label { display: flex; flex-direction: column; gap: 6px; font-family: var(--sans); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); }
-    .quick select, .quick input { min-width: 220px; min-height: 48px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink); font: 400 16px var(--sans); letter-spacing: 0; text-transform: none; }
+    .quick select, .quick input { min-width: 170px; min-height: 48px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink); font: 400 16px var(--sans); letter-spacing: 0; text-transform: none; }
     .quick .btn { min-height: 48px; }
     .promise { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 10px 18px; border: 1px solid rgba(168,122,61,.35); border-radius: 999px; font-family: var(--sans); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); background: rgba(232,204,146,.12); }
     .promise svg { width: 16px; height: 16px; color: var(--gold); }
@@ -312,6 +318,9 @@
     .faq details[open] summary::after { transform: rotate(45deg); }
     .faq details p { padding: 0 4px 22px; color: var(--ink-soft); max-width: 680px; }
     .faq details p a { color: var(--ink); border-bottom: 1px solid var(--gold); }
+    .policy-card { max-width: 760px; margin: 0 auto; padding: 32px 28px; background: #fffdf9; border: 1px solid var(--line); border-radius: 18px; display: grid; gap: 14px; }
+    .policy-card p { margin: 0; color: var(--ink); }
+    .policy-sign { font-family: var(--serif); font-style: italic; font-size: 21px; color: var(--gold) !important; }
 
     /* Phone action bar */
     .mbar { display: none; }
@@ -357,6 +366,7 @@
       <ul class="menu" id="menu">
         <li class="has-sub"><a href="#shop">Shop &#8964;</a>
           <ul class="sub">
+            <li><a href="#shop">Bridal &amp; Bridal Party Gifts</a></li>
             <li><a href="#shop">Personalized Apparel</a></li>
             <li><a href="#shop">Gifts &amp; Keepsakes</a></li>
             <li><a href="#shop">Events &amp; Celebrations</a></li>
@@ -370,12 +380,6 @@
       </ul>
 
       <div class="actions">
-        <a class="icon-btn hide-sm" href="#shop" aria-label="Browse collections">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        </a>
-        <a class="icon-btn hide-sm" href="#contact" aria-label="Contact us">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
-        </a>
         <a class="icon-btn" href="#custom-orders" data-quote aria-label="Start a custom order">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h14l-1 13H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
         </a>
@@ -410,9 +414,14 @@
     <section class="quick" aria-label="Start a custom order">
       <form class="wrap" data-quickstart>
         <div class="q-intro"><span class="eyebrow">Planning something special?</span><b>Start with your date</b></div>
+        <label>The occasion
+          <select name="qs-occasion">
+            <option value="">Choose one</option><option>Wedding</option><option>Engagement</option><option>Bridal Shower</option><option>Baby Shower</option><option>Birthday</option><option>Anniversary</option><option>Graduation</option><option>Holiday</option><option>Corporate Event</option><option>Just Because</option><option>Other</option>
+          </select>
+        </label>
         <label>I'm looking for
           <select name="qs-cat">
-            <option>Personalized Apparel</option><option>Gifts &amp; Keepsakes</option><option>Events &amp; Celebrations</option><option>Business &amp; Group Orders</option><option>Something else</option>
+            <option>Bridal &amp; Bridal Party Gifts</option><option>Personalized Apparel</option><option>Gifts &amp; Keepsakes</option><option>Events &amp; Celebrations</option><option>Business &amp; Group Orders</option><option>Something else</option>
           </select>
         </label>
         <label>Event or need-by date<input type="date" name="qs-date"></label>
@@ -421,6 +430,11 @@
     </section>
 
     <section class="cats" id="shop" aria-label="Shop collections">
+      <a class="cat cat-bridal" href="#custom-orders" data-quote data-category="Bridal &amp; Bridal Party Gifts" data-occasion="Wedding">
+        <img src="logo.jpg" alt="Nile Crafted Studio gold monogram with blush flowers" loading="lazy">
+        <div class="cat-body"><div><h3>Bridal &amp; Bridal<br>Party Gifts</h3><span class="eyebrow">Shop Now &rarr;</span></div>
+          <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+      </a>
       <a class="cat" href="#custom-orders" data-quote data-category="Personalized Apparel">
         <img src="cat-apparel.jpg" alt="Cream sweatshirt embroidered with MAMA and a heart" loading="lazy">
         <div class="cat-body"><div><h3>Personalized<br>Apparel</h3><span class="eyebrow">Shop Now &rarr;</span></div>
@@ -451,7 +465,7 @@
         </li>
         <li>
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M24 5 41 14v20L24 43 7 34V14z"/><path d="M7 14l17 9 17-9M24 23v20M15.5 9.5l17 9"/></svg>
-          <div><h4>US Shipping</h4><p>Across the United States</p></div>
+          <div><h4>Shipping</h4><p>Across the US &amp; Internationally</p></div>
         </li>
         <li>
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M24 40S7 30 7 18a8.5 8.5 0 0 1 17-3 8.5 8.5 0 0 1 17 3c0 12-17 22-17 22Z"/></svg>
@@ -560,8 +574,25 @@
           <details><summary>How do I start a custom order?</summary><p>Tap <a href="#quote" data-quote>Start a Custom Order</a> and tell us the occasion, the names or words you'd like, your colors and your date. It opens your email or messages app with everything filled in, so you just press send. You can also call, text or DM us on Instagram.</p></details>
           <details><summary>Will I see my design before it's made?</summary><p>Yes. We send you a design preview first and adjust it until it's exactly right. Nothing is made until you approve it.</p></details>
           <details><summary>How soon do I need to order?</summary><p>It depends on the piece and the quantity, so share your date as early as you can and we'll tell you what's possible for your timeline.</p></details>
-          <details><summary>Do you deliver or ship?</summary><p>We offer local delivery on Staten Island and surrounding areas, and we ship anywhere in the United States.</p></details>
+          <details><summary>Do you deliver or ship?</summary><p>We offer local delivery on Staten Island and surrounding areas, and we ship anywhere in the United States. We also ship internationally. Tell us where your order is headed and we'll confirm shipping cost and timing with your design preview.</p></details>
+          <details><summary>Can I return or exchange my order?</summary><p>Every piece is made just for you, so all sales are final. If your order arrives damaged, defective or incorrect, send us photos and we'll make it right. <a href="#policy">Read our full policy</a>.</p></details>
           <details><summary>Can you handle large or group orders?</summary><p>Yes. From matching sets for a bridal party to branded apparel for your team, choose Business &amp; Group Orders and tell us how many pieces you need.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="block policy" id="policy">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Our promise</p>
+          <h2>Custom Order &amp; <em>Refund Policy</em></h2>
+          <div class="ornament" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="policy-card reveal">
+          <p>All Nile Crafted Studio products are custom-made and personalized specifically for you. Due to the nature of our customized products, all sales are final and non-refundable.</p>
+          <p>Your satisfaction is extremely important to us! If you are not 100% satisfied with your order, please don't hesitate to reach out. We genuinely care about your experience and will do our best to address your concerns and find an appropriate solution.</p>
+          <p>If your order arrives damaged, defective, or incorrect, please contact us with photos so we can review the issue and assist you.</p>
+          <p class="policy-sign">Thank you for supporting Nile Crafted Studio and allowing us to create something special for you!</p>
         </div>
       </div>
     </section>
@@ -603,7 +634,7 @@
     <div class="wrap foot">
       <a class="brand" href="#top"><img src="mark.png" alt="" width="46" height="46"><span>Nile Crafted Studio</span></a>
       <nav aria-label="Footer">
-        <a href="#shop">Shop</a><a href="#custom-orders">Custom Orders</a><a href="#about">About</a><a href="#gallery">Gallery</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+        <a href="#shop">Shop</a><a href="#custom-orders">Custom Orders</a><a href="#about">About</a><a href="#gallery">Gallery</a><a href="#faq">FAQ</a><a href="#policy">Refund Policy</a><a href="#contact">Contact</a>
       </nav>
       <div class="foot-contact"><a href="tel:+18624140499">(862) 414-0499</a><a href="mailto:nilecraftedstudio@gmail.com">nilecraftedstudio@gmail.com</a><a href="https://www.instagram.com/nilecraftedstudio/" target="_blank" rel="noopener noreferrer">Instagram @nilecraftedstudio</a></div>
       <small>&copy; <span id="yr">2026</span> Nile Crafted Studio &nbsp;&middot;&nbsp; Custom &bull; Creative &bull; Always Yours</small>

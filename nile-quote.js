@@ -1,6 +1,6 @@
 /*!
  * Nile Crafted Studio — custom order request form.
- * Any link or button with data-quote opens it (data-category pre-selects the category).
+ * Any link or button with data-quote opens it (data-category / data-occasion pre-select those fields).
  * Sending opens the visitor's own email or messages app with everything filled in;
  * nothing is stored or sent anywhere by this site.
  * Deep link: nilecraftedstudio.com/#quote opens the form.
@@ -12,7 +12,8 @@
     email: 'nilecraftedstudio@gmail.com',
     sms: '+18624140499',
     phoneLabel: '(862) 414-0499',
-    categories: ['Personalized Apparel', 'Gifts & Keepsakes', 'Events & Celebrations', 'Business & Group Orders', 'Something else']
+    categories: ['Bridal & Bridal Party Gifts', 'Personalized Apparel', 'Gifts & Keepsakes', 'Events & Celebrations', 'Business & Group Orders', 'Something else'],
+    occasions: ['Wedding', 'Engagement', 'Bridal Shower', 'Baby Shower', 'Birthday', 'Anniversary', 'Graduation', 'Holiday', 'Corporate Event', 'Just Because', 'Other']
   };
 
   var CSS = [
@@ -37,6 +38,14 @@
     '.ncq-f label small{font-weight:400;color:var(--muted)}',
     '.ncq-dialog input,.ncq-dialog select,.ncq-dialog textarea{width:100%;box-sizing:border-box;min-height:46px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);font:inherit;font-size:16px}',
     '.ncq-dialog textarea{min-height:110px;resize:vertical}',
+    '.ncq-chips{display:flex;flex-wrap:wrap;gap:8px;border:0;margin:0;padding:0;min-width:0}',
+    '.ncq-chips legend{font-size:14px;font-weight:500;margin:0 0 8px;padding:0}',
+    '.ncq-chip{position:relative}',
+    '.ncq-chip input{position:absolute;opacity:0;width:1px;height:1px;min-height:0;margin:0}',
+    '.ncq-chip span{display:inline-flex;align-items:center;min-height:42px;padding:8px 15px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font-size:15px;cursor:pointer;transition:background .15s,border-color .15s,color .15s}',
+    '.ncq-chip span:hover{border-color:var(--gold)}',
+    '.ncq-chip input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}',
+    '.ncq-chip input:focus-visible+span{outline:2px solid var(--gold);outline-offset:2px}',
     '.ncq-err{color:#a12d2d;font-size:14px;margin:8px 0 0}',
     '.ncq-err:empty{display:none}',
     '.ncq-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}',
@@ -71,9 +80,11 @@
       ' <p class="ncq-sub">Tell us a little about your piece and we\'ll reply with a design preview and price.</p>' +
       ' <form novalidate>' +
       '  <div class="ncq-grid">' +
+      '   <fieldset class="ncq-chips ncq-full"><legend>What\'s the occasion?</legend>' +
+            CONFIG.occasions.map(function (o) { return '<label class="ncq-chip"><input type="radio" name="occasion" value="' + esc(o) + '"><span>' + esc(o) + '</span></label>'; }).join('') + '</fieldset>' +
       '   <div class="ncq-f ncq-full"><label for="ncq-cat">What are you looking for?</label><select id="ncq-cat" name="category">' +
             CONFIG.categories.map(function (c) { return '<option>' + esc(c) + '</option>'; }).join('') + '</select></div>' +
-      '   <div class="ncq-f"><label for="ncq-date">Event date <small>(or need-by)</small></label><input id="ncq-date" name="date" type="date" min="' + min + '"></div>' +
+      '   <div class="ncq-f"><label for="ncq-date"><span data-ncq-datelabel>Event date</span> <small>(or need-by)</small></label><input id="ncq-date" name="date" type="date" min="' + min + '"></div>' +
       '   <div class="ncq-f"><label for="ncq-qty">Quantity or guests <small>(optional)</small></label><input id="ncq-qty" name="qty" type="number" inputmode="numeric" min="1" max="5000" placeholder="e.g. 1, 25, 120"></div>' +
       '   <div class="ncq-f ncq-full"><label for="ncq-notes">Your idea</label><textarea id="ncq-notes" name="notes" maxlength="2000" placeholder="Names, wording, colors, theme, sizes — anything that helps us picture it."></textarea></div>' +
       '   <div class="ncq-f"><label for="ncq-name">Your name</label><input id="ncq-name" name="name" type="text" autocomplete="name" maxlength="80" required></div>' +
@@ -98,6 +109,20 @@
       if (e.key === 'Tab') trapTab(e);
     });
     form.addEventListener('submit', onSubmit);
+    form.addEventListener('change', function (e) { if (e.target.name === 'occasion') dateLabel(); });
+    form.addEventListener('reset', function () { setTimeout(dateLabel, 0); });
+  }
+
+  // "Wedding date", "Birthday date"... follows the chosen occasion
+  function dateLabel() {
+    var o = form.querySelector('input[name=occasion]:checked');
+    var v = o && o.value;
+    form.querySelector('[data-ncq-datelabel]').textContent = (v && v !== 'Other' && v !== 'Just Because') ? v + ' date' : 'Event date';
+  }
+
+  function setOccasion(v) {
+    Array.prototype.forEach.call(form.querySelectorAll('input[name=occasion]'), function (r) { r.checked = (r.value === v); });
+    dateLabel();
   }
 
   function trapTab(e) {
@@ -110,7 +135,7 @@
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   }
 
-  function open(category, date) {
+  function open(category, date, occasion) {
     if (!overlay) build();
     if (done) { done.remove(); done = null; form.hidden = false; }
     if (category) {
@@ -118,6 +143,7 @@
       Array.prototype.forEach.call(sel.options, function (o) { if (o.text === category) sel.value = o.text; });
     }
     if (date) form.querySelector('#ncq-date').value = date;
+    if (occasion) setOccasion(occasion);
     lastFocus = document.activeElement;
     overlay.hidden = false;
     document.documentElement.classList.add('ncq-open');
@@ -151,6 +177,7 @@
     var body = [
       'Hi Randa! I\'d like to start a custom order.',
       '',
+      'Occasion: ' + (d.get('occasion') || 'Not set'),
       'Looking for: ' + d.get('category'),
       'Date: ' + dateTxt,
       'Quantity / guests: ' + (d.get('qty') || 'N/A'),
@@ -161,7 +188,7 @@
     ].join('\n');
     var href = via === 'sms'
       ? 'sms:' + CONFIG.sms + (/iPhone|iPad|iPod/.test(navigator.userAgent) ? '&' : '?') + 'body=' + encodeURIComponent(body)
-      : 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent('Custom order: ' + d.get('category') + ' (' + name + ')') + '&body=' + encodeURIComponent(body);
+      : 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent('Custom order: ' + (d.get('occasion') ? d.get('occasion') + ' – ' : '') + d.get('category') + ' (' + name + ')') + '&body=' + encodeURIComponent(body);
 
     window.location.href = href;
 
@@ -180,7 +207,7 @@
     var a = e.target.closest('[data-quote]');
     if (!a) return;
     e.preventDefault();
-    open(a.getAttribute('data-category'));
+    open(a.getAttribute('data-category'), null, a.getAttribute('data-occasion'));
   });
 
   // Quick start bar under the hero: carries the chosen category and date into the form
@@ -188,8 +215,8 @@
     var q = e.target.closest && e.target.closest('[data-quickstart]');
     if (!q) return;
     e.preventDefault();
-    var c = q.querySelector('[name=qs-cat]'), d = q.querySelector('[name=qs-date]');
-    open(c && c.value, d && d.value);
+    var c = q.querySelector('[name=qs-cat]'), d = q.querySelector('[name=qs-date]'), o = q.querySelector('[name=qs-occasion]');
+    open(c && c.value, d && d.value, o && o.value);
   });
 
   function checkHash() { if (location.hash === '#quote') open(); }
