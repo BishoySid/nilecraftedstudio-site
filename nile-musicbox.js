@@ -2,7 +2,8 @@
  * Nile Crafted Studio - music box background tune.
  * Pachelbel's Canon in D (public domain), arranged for a music box with a soft solo violin,
  * played live in the browser with Web Audio. Violin notes: VSCO 2 Community Edition (CC0).
- * Works with the #musicBtn toggle; remembers the visitor's on/off choice.
+ * Starts as soon as the browser allows: right away where permitted, otherwise on the visitor's
+ * first tap, click or key press. Turning it off with #musicBtn keeps it off for the rest of the visit.
  */
 (function () {
   'use strict';
@@ -14,9 +15,11 @@
   var TEMPO = 76;            // beats per minute: light and happy
   var TRANSPOSE = 5;         // semitones up from D major (plays in G major, brighter)
   var BEAT = 60 / TEMPO;
-  var VOLUME = 0.5;          // master level once faded in
-  try { localStorage.removeItem('ncs-music'); } catch (e) {}   // old auto-start preference, no longer used
-  function save(v) {}
+  var VOLUME = 0.42;         // master level once faded in (medium)
+  var OFF_KEY = 'ncs-music-off';   // set for this visit only when the visitor turns the music off
+  try { localStorage.removeItem('ncs-music'); } catch (e) {}   // old preference, no longer used
+  function save(v) { try { if (v === 'off') sessionStorage.setItem(OFF_KEY, '1'); else sessionStorage.removeItem(OFF_KEY); } catch (e) {} }
+  function turnedOff() { try { return sessionStorage.getItem(OFF_KEY) === '1'; } catch (e) { return false; } }
 
   // ---- score: [beat, midi note, velocity] ----
   var N = { 'F#3': 54, 'G3': 55, 'A3': 57, 'B3': 59, 'C#4': 61, 'D4': 62, 'E4': 64, 'F#4': 66, 'G4': 67, 'A4': 69, 'B4': 71, 'C#5': 73, 'D5': 74, 'E5': 76, 'F#5': 78, 'G5': 79, 'A5': 81, 'B5': 83, 'C#6': 85, 'D6': 86 };
@@ -148,7 +151,7 @@
         playing = true; startAt = ctx.currentTime + 0.15; nextIdx = 0; loopN = 0;
         clearInterval(timer); timer = setInterval(schedule, 120); schedule();
       }
-      fade(VOLUME, 4); setUI(true); return true;
+      fade(VOLUME, 3); setUI(true); hint(); return true;
     }).catch(function () { setUI(false); return false; });
   }
   function stop() {
@@ -162,10 +165,34 @@
     e.stopPropagation(); removeFirstTouch();
     if (btn.classList.contains('on')) { save('off'); stop(); } else { save('on'); play(); }
   });
-  function removeFirstTouch() {}
-  // Music is OFF by default on every device and only starts when the visitor taps the music button,
-  // so it never interrupts their own podcast, music or call.
+  // a gold arc circles the button for a few seconds when the music starts, so visitors see where to turn it off
+  var hinted = false;
+  function hint() {
+    if (hinted) return; hinted = true;
+    btn.classList.add('hint');
+    setTimeout(function () { btn.classList.remove('hint'); }, 7000);
+  }
+
+  // Start right away where the browser allows sound; otherwise on the first tap, click or key press anywhere.
+  var EVENTS = ['pointerdown', 'touchend', 'keydown', 'click'];
+  function firstTouch(e) {
+    if (btn.contains(e.target)) return;           // the button handles itself
+    if (turnedOff() || btn.classList.contains('on')) { removeFirstTouch(); return; }
+    // some phones only allow sound from certain touch events, so keep listening until it actually starts
+    play().then(function (ok) { if (ok) removeFirstTouch(); });
+  }
+  function removeFirstTouch() {
+    EVENTS.forEach(function (t) { document.removeEventListener(t, firstTouch, true); });
+  }
   setUI(false);
+  if (!turnedOff()) {
+    EVENTS.forEach(function (t) { document.addEventListener(t, firstTouch, { capture: true, passive: true }); });
+    build();
+    ctx.resume().catch(function () {});
+    setTimeout(function () {
+      if (ctx.state === 'running' && !btn.classList.contains('on') && !turnedOff()) { removeFirstTouch(); play(); }
+    }, 250);
+  }
   document.addEventListener('visibilitychange', function () {
     if (!ctx || !playing) return;
     if (document.hidden) ctx.suspend(); else if (btn.classList.contains('on')) ctx.resume();

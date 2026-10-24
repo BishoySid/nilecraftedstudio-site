@@ -349,6 +349,15 @@
     @keyframes eq { 0%, 100% { height: 4px; } 50% { height: 14px; } }
     @media (max-width: 720px) { .music-label { display: none; } .music-btn { padding: 8px; right: 14px; bottom: calc(80px + env(safe-area-inset-bottom)); } }
     @media (prefers-reduced-motion: reduce) { .music-icon .bars i { animation: none; height: 10px; } }
+    @property --ring { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+    .music-btn::before { content: ""; position: absolute; inset: -5px; border-radius: inherit; padding: 2px; pointer-events: none; opacity: 0; transition: opacity .8s ease;
+      background: conic-gradient(from var(--ring), rgba(232, 204, 146, 0) 0deg, rgba(232, 204, 146, 0) 200deg, #e8cc92 290deg, var(--gold) 345deg, rgba(232, 204, 146, 0) 360deg);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); }
+    .music-btn.hint::before { opacity: 1; animation: music-ring 1.6s linear infinite; }
+    .music-btn.hint { animation: music-glow 2.4s ease-in-out 3; }
+    @keyframes music-ring { to { --ring: 360deg; } }
+    @keyframes music-glow { 0%, 100% { box-shadow: 0 8px 24px rgba(74, 51, 36, .14), 0 0 0 0 rgba(212, 170, 92, 0); } 50% { box-shadow: 0 8px 24px rgba(74, 51, 36, .14), 0 0 22px 4px rgba(212, 170, 92, .45); } }
+    @media (prefers-reduced-motion: reduce) { .music-btn.hint::before { animation: none; background: linear-gradient(#e8cc92, var(--gold)); } .music-btn.hint { animation: none; box-shadow: 0 8px 24px rgba(74, 51, 36, .14), 0 0 18px 3px rgba(212, 170, 92, .4); } }
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
   </style>
 </head>
@@ -668,9 +677,9 @@
     <span class="music-label" id="musicLabel">Music off</span>
   </button>
 
-  <script src="site.js?v=20261024" defer></script>
-  <script src="nile-quote.js?v=20261024" defer></script>
-  <script src="nile-apparel.js?v=20261024" defer></script>
-  <script src="nile-musicbox.js?v=20261024" defer></script>
+  <script src="site.js?v=20261024b" defer></script>
+  <script src="nile-quote.js?v=20261024b" defer></script>
+  <script src="nile-apparel.js?v=20261024b" defer></script>
+  <script src="nile-musicbox.js?v=20261024b" defer></script>
 </body>
 </html>
