@@ -7,9 +7,9 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Nile Crafted Studio | Custom Gifts, Apparel &amp; Keepsakes</title>
-  <meta name="description" content="Nile Crafted Studio: personalized apparel, gifts, keepsakes, event pieces and business orders. Made with heart, designed for your story. Local delivery on Staten Island and shipping across the US.">
+  <meta name="description" content="Nile Crafted Studio: personalized apparel, gifts, keepsakes, event pieces and business orders. Made with heart, designed for your story. Bridal and bridal party gifts too. Local delivery on Staten Island, shipping across the US and internationally.">
   <meta property="og:title" content="Nile Crafted Studio">
-  <meta property="og:description" content="Custom gifts, apparel, and keepsakes for life's most special moments.">
+  <meta property="og:description" content="Custom gifts, apparel, bridal party gifts and keepsakes for life's most special moments. Shipping across the US and internationally.">
   <meta property="og:image" content="https://www.nilecraftedstudio.com/logo.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="800">
@@ -43,6 +43,7 @@
       --sans: "Jost", "Helvetica Neue", Arial, sans-serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    .sr-only { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 6px; font-family: var(--sans); font-size: 14px; }
     .skip:focus { top: 12px; }
     main:focus { outline: none; }
@@ -97,7 +98,7 @@
     .play i svg { width: 13px; height: 13px; }
 
     /* Category tiles */
-    .cats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; padding: 10px; background: var(--cream); }
+    .cats { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; padding: 10px; background: var(--cream); }
     .cat { position: relative; display: block; background: #3e2a1d; overflow: hidden; aspect-ratio: 370 / 300; color: #fff; }
     .cat img { position: absolute; top: 0; left: 0; width: 100%; height: 66%; object-fit: cover; object-position: center top; transition: transform .6s ease; }
     .cat::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(62, 42, 29, 0) 22%, rgba(62, 42, 29, .55) 46%, rgba(62, 42, 29, .96) 66%, #3e2a1d 100%); }
@@ -213,10 +214,11 @@
 
     .gallery { background: var(--cream); }
     .gallery-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
-    .gallery-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; }
-    .gallery-more { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 20px; text-align: center; color: #fbf7f2; background: radial-gradient(circle at 30% 20%, #5a4130 0%, #3e2a1d 70%); border: 1px solid rgba(168, 122, 61, .55); outline: 1px solid rgba(168, 122, 61, .35); outline-offset: -8px; transition: transform .2s; }
+    .gallery-grid img { width: 100%; height: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+    .gallery-more { aspect-ratio: 3 / 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 20px; text-align: center; color: #fbf7f2; background: radial-gradient(circle at 30% 20%, #5a4130 0%, #3e2a1d 70%); border: 1px solid rgba(168, 122, 61, .55); outline: 1px solid rgba(168, 122, 61, .35); outline-offset: -8px; transition: transform .2s; }
     .gallery-more:hover { transform: translateY(-2px); }
-    .gallery-more svg { width: 40px; height: 40px; color: #e8cc92; }
+    .gallery-more svg { width: 32px; height: 32px; color: #e8cc92; }
+    @media (min-width: 1121px) { .gallery-more { gap: 6px; padding: 14px; } .gallery-more strong { font-size: clamp(18px, 1.4vw, 22px); } .gallery-more-btn { padding: 7px 14px; } }
     .gallery-more .eyebrow { color: #e8cc92; font-size: 11px; }
     .gallery-more strong { font-family: var(--serif); font-weight: 500; font-size: clamp(20px, 1.7vw, 25px); line-height: 1.15; }
     .gallery-more-btn { margin-top: 4px; font-family: var(--sans); font-size: 12px; letter-spacing: .08em; padding: 10px 16px; border-radius: 999px; background: #e6c3b8; color: var(--ink); }
@@ -318,6 +320,9 @@
     .faq details[open] summary::after { transform: rotate(45deg); }
     .faq details p { padding: 0 4px 22px; color: var(--ink-soft); max-width: 680px; }
     .faq details p a { color: var(--ink); border-bottom: 1px solid var(--gold); }
+    section.apparel { background: var(--cream); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); --blush: var(--rose); --paper: #fff; --tint: var(--ivory); }
+    section.apparel .nca-head { text-align: center; }
+    section.apparel .nca-title { font-size: clamp(32px, 3.4vw, 46px); }
     .policy-card { max-width: 760px; margin: 0 auto; padding: 32px 28px; background: #fffdf9; border: 1px solid var(--line); border-radius: 18px; display: grid; gap: 14px; }
     .policy-card p { margin: 0; color: var(--ink); }
     .policy-sign { font-family: var(--serif); font-style: italic; font-size: 21px; color: var(--gold) !important; }
@@ -366,11 +371,11 @@
       <ul class="menu" id="menu">
         <li class="has-sub"><a href="#shop">Shop &#8964;</a>
           <ul class="sub">
-            <li><a href="#shop">Bridal &amp; Bridal Party Gifts</a></li>
-            <li><a href="#shop">Personalized Apparel</a></li>
-            <li><a href="#shop">Gifts &amp; Keepsakes</a></li>
-            <li><a href="#shop">Events &amp; Celebrations</a></li>
-            <li><a href="#shop">Business &amp; Group Orders</a></li>
+            <li><a href="#custom-orders" data-quote data-category="Bridal &amp; Bridal Party Gifts" data-occasion="Wedding">Bridal &amp; Bridal Party Gifts</a></li>
+            <li><a href="#apparel">Personalized Apparel</a></li>
+            <li><a href="#custom-orders" data-quote data-category="Gifts &amp; Keepsakes">Gifts &amp; Keepsakes</a></li>
+            <li><a href="#custom-orders" data-quote data-category="Events &amp; Celebrations">Events &amp; Celebrations</a></li>
+            <li><a href="#custom-orders" data-quote data-category="Business &amp; Group Orders">Business &amp; Group Orders</a></li>
           </ul>
         </li>
         <li><a href="#custom-orders">Custom Orders</a></li>
@@ -429,13 +434,14 @@
       </form>
     </section>
 
-    <section class="cats" id="shop" aria-label="Shop collections">
+    <section class="cats" id="shop" aria-labelledby="shop-heading">
+      <h2 class="sr-only" id="shop-heading">Shop collections</h2>
       <a class="cat cat-bridal" href="#custom-orders" data-quote data-category="Bridal &amp; Bridal Party Gifts" data-occasion="Wedding">
         <img src="logo.jpg" alt="Nile Crafted Studio gold monogram with blush flowers" loading="lazy">
         <div class="cat-body"><div><h3>Bridal &amp; Bridal<br>Party Gifts</h3><span class="eyebrow">Shop Now &rarr;</span></div>
           <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
       </a>
-      <a class="cat" href="#custom-orders" data-quote data-category="Personalized Apparel">
+      <a class="cat" href="#apparel">
         <img src="cat-apparel.jpg" alt="Cream sweatshirt embroidered with MAMA and a heart" loading="lazy">
         <div class="cat-body"><div><h3>Personalized<br>Apparel</h3><span class="eyebrow">Shop Now &rarr;</span></div>
           <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
@@ -534,10 +540,16 @@
         <div class="steps reveal">
           <div class="step"><h3>Share your idea</h3><p>Tell us the occasion, the names or words you want, colors, and your date.</p></div>
           <div class="step"><h3>Approve your design</h3><p>We send you a preview to review, and adjust it until it's exactly right.</p></div>
-          <div class="step"><h3>Receive your piece</h3><p>Local delivery on Staten Island and nearby, or shipping anywhere in the US.</p></div>
+          <div class="step"><h3>Receive your piece</h3><p>Local delivery on Staten Island and nearby, or shipping anywhere in the US and internationally.</p></div>
         </div>
         <div class="center"><a class="btn" href="#contact" data-quote>Start a Custom Order &nbsp;&rarr;</a><br>
           <span class="promise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>You see a design preview before anything is made</span></div>
+      </div>
+    </section>
+
+    <section class="block apparel" id="apparel" aria-label="Custom apparel order">
+      <div class="wrap">
+        <div data-apparel-order></div>
       </div>
     </section>
 
@@ -656,8 +668,9 @@
     <span class="music-label" id="musicLabel">Music off</span>
   </button>
 
-  <script src="site.js" defer></script>
-  <script src="nile-quote.js" defer></script>
-  <script src="nile-musicbox.js" defer></script>
+  <script src="site.js?v=20261024" defer></script>
+  <script src="nile-quote.js?v=20261024" defer></script>
+  <script src="nile-apparel.js?v=20261024" defer></script>
+  <script src="nile-musicbox.js?v=20261024" defer></script>
 </body>
 </html>

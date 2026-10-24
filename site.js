@@ -26,7 +26,8 @@
   // Announcement rotator (pauses on hover/focus and when the tab is hidden)
   var msgs = [
     'Custom Designs &nbsp;&#10022;&nbsp; Meaningful Gifts &nbsp;&#10022;&nbsp; Everyday Luxury',
-    'Local Delivery on Staten Island &nbsp;&#10022;&nbsp; Shipping Across the US',
+    'Local Delivery on Staten Island &nbsp;&#10022;&nbsp; Shipping Across the US &amp; Internationally',
+    'Now Taking Bridal &amp; Bridal Party Orders',
     'Now Taking Custom &amp; Group Orders'
   ], i = 0, el = document.getElementById('annText'), bar = document.querySelector('.announce'), paused = false;
   function show(n) {

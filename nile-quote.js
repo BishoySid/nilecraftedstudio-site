@@ -216,6 +216,8 @@
     if (!q) return;
     e.preventDefault();
     var c = q.querySelector('[name=qs-cat]'), d = q.querySelector('[name=qs-date]'), o = q.querySelector('[name=qs-occasion]');
+    var ap = document.getElementById('apparel');
+    if (ap && c && c.value === 'Personalized Apparel') { ap.scrollIntoView({ behavior: 'smooth' }); return; }
     open(c && c.value, d && d.value, o && o.value);
   });
 
