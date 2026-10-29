@@ -59,6 +59,18 @@
     .announce { background: var(--cream-2); color: var(--ink); height: 34px; display: flex; align-items: center; justify-content: center; gap: 24px; }
     .announce button { background: none; border: 0; color: var(--ink-soft); cursor: pointer; font-size: 18px; line-height: 1; padding: 4px 10px; }
     .announce p { min-width: 0; text-align: center; transition: opacity .35s; }
+    a.announce { text-decoration: none; cursor: pointer; transition: background-color .2s, box-shadow .2s; }
+    a.announce:hover, a.announce:focus-visible { box-shadow: inset 0 -1px 0 var(--gold); }
+    a.announce:focus-visible { outline: 2px solid var(--gold); outline-offset: -3px; }
+    .announce .ann-text { text-underline-offset: 4px; text-decoration-thickness: 1px; }
+    a.announce:hover .ann-text, a.announce:focus-visible .ann-text { text-decoration: underline; text-decoration-color: var(--gold); }
+    .announce .ann-go { display: inline-block; margin-left: 10px; color: var(--gold); font-weight: 600; transition: transform .2s; }
+    a.announce:hover .ann-go, a.announce:focus-visible .ann-go { transform: translateX(4px); }
+    .announce .ann-short { display: none; }
+    a.announce p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 12px; }
+    @media (max-width: 1080px) { .announce .ann-full { display: none; } .announce .ann-short { display: inline; } }
+    #date-widget { scroll-margin-top: 16px; }
+    @media (prefers-reduced-motion: reduce) { .announce .ann-go { transition: none; } }
 
     /* Header */
     header { position: sticky; top: 0; z-index: 50; background: rgba(251, 247, 242, .96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
@@ -273,7 +285,9 @@
       .hero .wrap { padding-top: 48px; padding-bottom: 40px; }
       .hero-img { display: block; width: 100%; aspect-ratio: 4 / 3; background: url("hero.jpg") 56% center / cover no-repeat; }
       .announce button { display: none; }
-      .announce p { font-size: 9px; letter-spacing: .1em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 10px; }
+      .announce p { font-size: 10px; letter-spacing: .1em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 10px; }
+      .announce .ann-full { display: none; }
+      .announce .ann-short { display: inline; }
       .brand span { font-size: 15px; letter-spacing: .1em; }
       .brand img { width: 46px; height: 46px; }
       .actions { gap: 4px; }
@@ -364,11 +378,10 @@
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <div class="announce" role="region" aria-label="Announcements">
-    <button type="button" id="annPrev" aria-label="Previous announcement">&#8249;</button>
-    <p class="eyebrow" id="annText">Custom Designs &nbsp;&#10022;&nbsp; Meaningful Gifts &nbsp;&#10022;&nbsp; Everyday Luxury</p>
-    <button type="button" id="annNext" aria-label="Next announcement">&#8250;</button>
-  </div>
+  <!-- Holiday 2026 notice: opens the custom order form with "Holiday" picked (falls back to the date widget without JS) -->
+  <a class="announce" href="#date-widget" data-quote data-category="Gifts &amp; Keepsakes" data-occasion="Holiday">
+    <p class="eyebrow"><span class="ann-text"><span class="ann-full">&#127876; Holiday 2026 Custom Orders Open &mdash; Limited handmade production slots &middot; Order early for guaranteed holiday delivery</span><span class="ann-short">&#127876; Holiday 2026 Orders Open &middot; Order Early</span></span><span class="ann-go" aria-hidden="true">&rarr;</span></p>
+  </a>
 
   <header id="top">
     <div class="wrap nav">
@@ -425,7 +438,7 @@
     </section>
 
 
-    <section class="quick" aria-label="Start a custom order">
+    <section class="quick" id="date-widget" aria-label="Start a custom order">
       <form class="wrap" data-quickstart>
         <div class="q-intro"><span class="eyebrow">Planning something special?</span><b>Start with your date</b></div>
         <label>The occasion
