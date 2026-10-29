@@ -373,6 +373,71 @@
     @keyframes music-glow { 0%, 100% { box-shadow: 0 8px 24px rgba(74, 51, 36, .14), 0 0 0 0 rgba(212, 170, 92, 0); } 50% { box-shadow: 0 8px 24px rgba(74, 51, 36, .14), 0 0 22px 4px rgba(212, 170, 92, .45); } }
     @media (prefers-reduced-motion: reduce) { .music-btn.hint::before { animation: none; background: linear-gradient(#e8cc92, var(--gold)); } .music-btn.hint { animation: none; box-shadow: 0 8px 24px rgba(74, 51, 36, .14), 0 0 18px 3px rgba(212, 170, 92, .4); } }
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+    /* ===== Symmetry & UX pass (Oct 29, 2026): desktop / tablet / phone ===== */
+    /* Desktop: equal gallery tiles; no doubled gaps between same-colour sections; tidy email wrap */
+    .gallery-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    #policy, #contact { padding-top: clamp(16px, 2.4vw, 32px); }
+    @media (min-width: 961px) { .contact-cards { grid-template-columns: repeat(3, minmax(0, 320px)); } }
+    .contact-card { padding: 32px 18px; }
+    .contact-card strong { font-size: clamp(18px, 1.5vw, 22px); overflow-wrap: break-word; }
+    section.apparel .nca-progress button { min-height: 40px; align-content: center; }
+
+    /* Tablet (721-1120px): hero copy no longer sits on the logo; centred, balanced blocks */
+    @media (min-width: 721px) and (max-width: 1120px) {
+      .hero { flex-direction: column; align-items: stretch; min-height: 0; aspect-ratio: auto; background: var(--brown); }
+      .hero::before { display: none; }
+      .hero .wrap { padding-top: 56px; padding-bottom: 48px; }
+      .hero-img { display: block; width: 100%; aspect-ratio: 16 / 7; background: url("hero.jpg") 60% center / cover no-repeat; }
+      .quick form { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; max-width: 860px; }
+      .quick .q-intro { grid-column: 1 / -1; text-align: center; margin: 0; }
+      .quick label, .quick select, .quick input { width: 100%; min-width: 0; }
+      .quick .btn { grid-column: 1 / -1; justify-self: center; min-width: 280px; justify-content: center; }
+      .features li { justify-content: center; }
+    }
+    @media (max-width: 1120px) {
+      .hero-copy { max-width: 640px; margin: 0 auto; text-align: center; }
+      .hero p.lead { margin: 0 auto; }
+      .hero-ctas { justify-content: center; }
+    }
+    @media (min-width: 861px) and (max-width: 1120px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 18px; } .step { padding: 36px 20px; } }
+    @media (max-width: 860px) { .steps { max-width: 560px; margin: 0 auto; } }
+
+    /* Phone (up to 720px) */
+    @media (max-width: 720px) {
+      .hero-copy .eyebrow { white-space: nowrap; font-size: clamp(9px, 2.6vw, 11.5px); letter-spacing: .12em; }
+      .founder { text-align: center; }
+      .founder-body p:not(.eyebrow):not(.sig) { text-align: left; }
+      .founder .flourish { margin-left: auto; margin-right: auto; }
+      .founder-title h2 { padding-right: 0; }
+      .creds { justify-content: center; }
+      .founder .btn { white-space: normal; max-width: 100%; justify-content: center; text-align: center; line-height: 1.5; padding: 14px 22px; }
+      .contact-cards { max-width: 440px; margin: 0 auto; gap: 12px; }
+      .contact-card { display: grid; grid-template-columns: 40px 1fr; grid-template-rows: auto auto; column-gap: 16px; row-gap: 2px; align-items: center; text-align: left; padding: 18px 20px; }
+      .contact-card svg { grid-row: 1 / 3; width: 30px; height: 30px; justify-self: center; }
+      .contact-card strong { font-size: 19px; }
+      .foot { flex-direction: column; justify-content: center; text-align: center; gap: 18px; }
+      .foot nav { justify-content: center; gap: 0 22px; max-width: 360px; }
+      .foot-contact { flex-direction: column; align-items: center; gap: 0; }
+      .foot small { text-align: center; }
+    }
+    /* Small phones: two-up tiles instead of one long column */
+    @media (max-width: 520px) {
+      .cats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 8px; }
+      .cats .cat { aspect-ratio: 1 / 1.12; }
+      .cats .cat-bridal { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
+      .cats .cat-bridal img { height: 100%; object-position: center 40%; }
+      .cats .cat:not(.cat-bridal) .cat-body { left: 14px; right: 14px; bottom: 14px; }
+      .cats .cat:not(.cat-bridal) h3 { font-size: clamp(15px, 4.4vw, 19px); }
+      .cats .cat:not(.cat-bridal) .eyebrow { margin-top: 8px; font-size: 11px; }
+      .cats .cat:not(.cat-bridal) .arrow { display: none; }
+      .features ul { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 26px; padding: 28px 0; }
+      .features li { flex-direction: column; text-align: center; gap: 10px; padding: 0 8px; }
+      .features li:nth-child(even) { border-left: 1px solid var(--line) !important; }
+      .features svg { width: 36px; height: 36px; }
+      .features h4 { font-size: 14px; }
+      .features p { font-size: 14px; line-height: 1.4; }
+    }
   </style>
 </head>
 <body>
@@ -648,7 +713,7 @@
           <a class="contact-card" href="mailto:nilecraftedstudio@gmail.com">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
             <span class="eyebrow">Email</span>
-            <strong>nilecraftedstudio@gmail.com</strong>
+            <strong>nilecraftedstudio<wbr>@gmail.com</strong>
           </a>
           <a class="contact-card" href="https://www.instagram.com/nilecraftedstudio/" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
