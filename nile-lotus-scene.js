@@ -31,7 +31,7 @@ Object.assign(key.shadow.camera,{left:-3,right:3,top:4,bottom:-2,near:1,far:20})
  r.addColorStop(0,'#fffaf2');r.addColorStop(.35,'#f8efe3');r.addColorStop(.7,'#eedfcc');r.addColorStop(1,'#dcc6ac');
  g.fillStyle=r;g.fillRect(0,0,W,H);
  const f=g.createLinearGradient(0,H*.62,0,H);f.addColorStop(0,'rgba(214,190,160,0)');f.addColorStop(1,'rgba(200,172,140,.35)');g.fillStyle=f;g.fillRect(0,0,W,H);
- wrap.style.background='url('+c.toDataURL()+') center/100% 100% no-repeat,#f7f0e8';
+ 
  const s=document.createElement('canvas');s.width=s.height=256;const q=s.getContext('2d',{willReadFrequently:true});const sg=q.createRadialGradient(128,128,8,128,128,128);
  sg.addColorStop(0,'rgba(90,60,35,.42)');sg.addColorStop(.45,'rgba(110,80,50,.2)');sg.addColorStop(1,'rgba(120,90,60,0)');q.fillStyle=sg;q.fillRect(0,0,256,256);
  const cs=new T.Mesh(new T.PlaneGeometry(3.1,3.1),new T.MeshBasicMaterial({map:new T.CanvasTexture(s),transparent:true,depthWrite:false}));
@@ -479,11 +479,11 @@ const veil=(function(){const U=16,VN=32,pos=[],idx=[];for(let i=0;i<=VN;i++){con
  const m=new T.Mesh(g,new T.MeshPhysicalMaterial({color:new T.Color(0xe9d3c6).convertSRGBToLinear(),alphaMap:nt,roughness:.8,transparent:true,opacity:.9,alphaTest:.02,side:T.DoubleSide,depthWrite:false}));figure.add(m);return m;})();
 if(window.NCS_COUPLE)loadCouple().then(()=>window.__lotusKick&&window.__lotusKick(),e=>console.warn('couple',e));
 
-const ground=new T.Mesh(new T.PlaneGeometry(30,30),new T.ShadowMaterial({opacity:.12}));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
+const ground=new T.Mesh(new T.PlaneGeometry(30,30),new T.ShadowMaterial({opacity:.12}));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;ground.visible=false;scene.add(ground);
 const controls={target:new T.Vector3(),update(){camera.lookAt(this.target);},addEventListener(){}};
 controls.target.set(0,1.36,0);controls.update();
 function size(){const w=wrap.clientWidth,h=wrap.clientHeight;if(!w||!h)return;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();
- const v=camera.position.clone().sub(controls.target).setLength(Math.max(6.7,5.2/camera.aspect));camera.position.copy(controls.target).add(v);controls.update();}
+ const v=camera.position.clone().sub(controls.target).setLength(Math.max(8.4,6.6/camera.aspect));camera.position.copy(controls.target).add(v);controls.update();}
 new ResizeObserver(()=>{size();window.__lotusKick&&window.__lotusKick();}).observe(wrap);size();
 
 // ---- Music state comes from the site's music button (nile-musicbox.js toggles its "on" class)
@@ -522,7 +522,7 @@ const clock=new T.Clock();let open=0,spd=0,amp=0;const OPEN_T=reduce?1.6:3.6,SWA
 const mood=(function(){
  cv.style.position='relative';cv.style.zIndex=1;
  const dim=document.createElement('div');dim.setAttribute('aria-hidden','true');
- dim.style.cssText='position:absolute;inset:0;pointer-events:none;z-index:0;opacity:0;background:radial-gradient(ellipse 46% 52% at 50% 42%,rgba(255,214,150,.38) 0%,rgba(236,190,128,.16) 45%,rgba(96,58,26,.4) 100%)';
+ dim.style.cssText='position:absolute;inset:0;pointer-events:none;z-index:0;opacity:0;background:radial-gradient(ellipse 46% 52% at 50% 42%,rgba(255,214,150,.42) 0%,rgba(236,190,128,.16) 45%,rgba(236,190,128,0) 70%)';
  wrap.insertBefore(dim,cv);
  const spot=new T.SpotLight(0xffd59a,0,9,.34,.75,1.4);spot.position.set(.5,4.6,2.6);spot.target.position.set(0,EY+CL+.6,0);scene.add(spot,spot.target);
  const NP=56,pos=new Float32Array(NP*3),sp=[];
@@ -544,7 +544,7 @@ const mood=(function(){
   key.intensity=base.key*(1-.3*e);fill.intensity=base.fill*(1-.35*e);hemi.intensity=base.hemi*(1-.3*e);rim.intensity=base.rim*(1+.4*e);
   tw+=mv*dt*2.2;pts.visible=pts2.visible=e>.02;pm.opacity=.9*e*e*(.6+.4*Math.sin(tw));pm2.opacity=.9*e*e*(.6-.4*Math.sin(tw*1.3));
   if(mv>0){for(let i=0;i<NP;i++){let y=pos[i*3+1]+sp[i]*mv*dt;if(y>EY+CL+1.4)y=EY+CL;pos[i*3+1]=y;}g.attributes.position.needsUpdate=true;}
-  if(CAM_EASE){const D0=Math.max(6.7,5.2/camera.aspect);
+  if(CAM_EASE){const D0=Math.max(8.4,6.6/camera.aspect);
    const v=camera.position.clone().sub(controls.target);if(!dragged){const az=A0*(1-e),hz=Math.hypot(v.x,v.z);v.x=Math.sin(az)*hz;v.z=Math.cos(az)*hz;}controls.target.y=1.36+.56*e;v.setLength(D0*(1-.13*e));camera.position.copy(controls.target).add(v);}
  };})();
 let CAM_EASE=!reduce,dragged=false;const A0=Math.atan2(.9,6.4);controls.addEventListener('start',()=>{dragged=true;});// the view eases round to face the open egg head-on, unless the visitor has turned it themselves
