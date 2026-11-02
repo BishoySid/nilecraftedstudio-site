@@ -11,11 +11,13 @@
   if (!btn) return;
   var AC = window.AudioContext || window.webkitAudioContext;
   if (!AC) { btn.style.display = 'none'; return; }
+  // iPhone/iPad: let the music play even when the side switch is set to silent, like a video would
+  try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
 
   var TEMPO = 76;            // beats per minute: light and happy
   var TRANSPOSE = 5;         // semitones up from D major (plays in G major, brighter)
   var BEAT = 60 / TEMPO;
-  var VOLUME = 0.2;          // master level once faded in (low, so it never startles)
+  var VOLUME = 0.75;         // master level once faded in: soft background level (about -24 dBFS), clearly audible but never startling
   var OFF_KEY = 'ncs-music-off';   // set for this visit only when the visitor turns the music off
   try { localStorage.removeItem('ncs-music'); } catch (e) {}   // old preference, no longer used
   function save(v) { try { if (v === 'off') sessionStorage.setItem(OFF_KEY, '1'); else sessionStorage.removeItem(OFF_KEY); } catch (e) {} }
