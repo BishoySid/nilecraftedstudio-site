@@ -15,7 +15,7 @@
   var TEMPO = 76;            // beats per minute: light and happy
   var TRANSPOSE = 5;         // semitones up from D major (plays in G major, brighter)
   var BEAT = 60 / TEMPO;
-  var VOLUME = 0.42;         // master level once faded in (medium)
+  var VOLUME = 0.2;          // master level once faded in (low, so it never startles)
   var OFF_KEY = 'ncs-music-off';   // set for this visit only when the visitor turns the music off
   try { localStorage.removeItem('ncs-music'); } catch (e) {}   // old preference, no longer used
   function save(v) { try { if (v === 'off') sessionStorage.setItem(OFF_KEY, '1'); else sessionStorage.removeItem(OFF_KEY); } catch (e) {} }
