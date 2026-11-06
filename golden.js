@@ -64,6 +64,7 @@
   var stage = document.getElementById('wcStage');
   stage.addEventListener('click', function (e) {
     if (e.target.closest('[data-gl-fast]')) stage.classList.add('wc-fast');
+    if (e.target.closest('[data-wc-open]') && innerWidth <= 1100) setTimeout(function () { stage.scrollIntoView({ block: 'start', behavior: 'smooth' }); }, 60);
     else if (e.target.closest('[data-wc-close]') || e.target.closest('[data-wc-leave]')) setTimeout(function () { stage.classList.remove('wc-fast'); }, 300);
   }, true);
   var tabsEl = document.querySelector('.gl-tabs');
