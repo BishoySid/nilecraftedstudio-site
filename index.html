@@ -23,7 +23,6 @@
   <meta name="theme-color" content="#f7f0e8">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="preload" as="image" href="hero.jpg" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
@@ -454,13 +453,14 @@
       .features p { font-size: 14px; line-height: 1.4; }
     }
   </style>
+  <link rel="stylesheet" href="golden.css?v=20261105">
 </head>
-<body>
+<body data-layout="c">
   <a class="skip" href="#main">Skip to content</a>
 
   <!-- Holiday 2026 notice: opens the custom order form with "Holiday" picked (falls back to the date widget without JS) -->
   <a class="announce" href="#date-widget" data-quote data-category="Gifts &amp; Keepsakes" data-occasion="Holiday">
-    <p class="eyebrow"><span class="ann-text"><span class="ann-full">&#127876; Holiday 2026 Custom Orders Open &mdash; Limited handmade production slots &middot; Order early for guaranteed holiday delivery</span><span class="ann-short">&#127876; Holiday 2026 Orders Open &middot; Order Early</span></span><span class="ann-go" aria-hidden="true">&rarr;</span></p>
+    <p class="eyebrow"><span class="ann-text"><span class="ann-full">&#127876; Holiday 2026 Custom Orders Open &mdash; Limited handmade production slots &middot; Order early for holiday delivery</span><span class="ann-short">&#127876; Holiday 2026 Orders Open &middot; Order Early</span></span><span class="ann-go" aria-hidden="true">&rarr;</span></p>
   </a>
 
   <header id="top">
@@ -481,7 +481,7 @@
             <li><a href="#custom-orders" data-quote data-category="Business &amp; Group Orders">Business &amp; Group Orders</a></li>
           </ul>
         </li>
-        <li><a href="#custom-orders">Custom Orders</a></li>
+        <li><a href="#weddings">Weddings</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -503,70 +503,13 @@
   </header>
 
   <main id="main" tabindex="-1">
-    <section class="hero" aria-label="Welcome">
-      <div class="wrap">
-        <div class="hero-copy">
-          <p class="eyebrow">Personalized &nbsp;&bull;&nbsp; Meaningful &nbsp;&bull;&nbsp; Beautifully Crafted</p>
-          <h1>Made with Heart<br>Designed for Your Story</h1>
-          <p class="lead">Custom gifts, apparel, and keepsakes for life's most special moments.</p>
-          <div class="hero-ctas">
-            <a class="btn" href="#shop">Shop Collections &nbsp;&rarr;</a>
-            <a class="play eyebrow" href="#about"><i><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 1.5v9M2.5 7 6 10.5 9.5 7"/></svg></i>Our Story</a>
-          </div>
-        </div>
-      </div>
-      <div class="hero-img" role="img" aria-label="Nile Crafted Studio monogram with flowers and a wrapped gift"></div>
-    </section>
 
-
-    <section class="quick" id="date-widget" aria-label="Start a custom order">
-      <form class="wrap" data-quickstart>
-        <div class="q-intro"><span class="eyebrow">Planning something special?</span><b>Start with your date</b></div>
-        <label>The occasion
-          <select name="qs-occasion">
-            <option value="">Choose one</option><option>Wedding</option><option>Engagement</option><option>Bridal Shower</option><option>Baby Shower</option><option>Birthday</option><option>Anniversary</option><option>Graduation</option><option>Holiday</option><option>Corporate Event</option><option>Just Because</option><option>Other</option>
-          </select>
-        </label>
-        <label>I'm looking for
-          <select name="qs-cat">
-            <option>Bridal &amp; Bridal Party Gifts</option><option>Personalized Apparel</option><option>Gifts &amp; Keepsakes</option><option>Events &amp; Celebrations</option><option>Business &amp; Group Orders</option><option>Something else</option>
-          </select>
-        </label>
-        <label>Event or need-by date<input type="date" name="qs-date"></label>
-        <button class="btn" type="submit">Start my order &nbsp;&rarr;</button>
-      </form>
-    </section>
-
-    <section class="cats" id="shop" aria-labelledby="shop-heading">
-      <h2 class="sr-only" id="shop-heading">Shop collections</h2>
-      <a class="cat cat-bridal" href="#custom-orders" data-quote data-category="Bridal &amp; Bridal Party Gifts" data-occasion="Wedding">
-        <img src="logo.jpg" alt="Nile Crafted Studio gold monogram with blush flowers" loading="lazy">
-        <div class="cat-body"><div><h3>Bridal &amp; Bridal<br>Party Gifts</h3><span class="eyebrow">Shop Now &rarr;</span></div>
-          <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
-      </a>
-      <a class="cat" href="#apparel">
-        <img src="cat-apparel.jpg" alt="Cream sweatshirt embroidered with MAMA and a heart" loading="lazy">
-        <div class="cat-body"><div><h3>Personalized<br>Apparel</h3><span class="eyebrow">Shop Now &rarr;</span></div>
-          <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
-      </a>
-      <a class="cat" href="#custom-orders" data-quote data-category="Gifts &amp; Keepsakes">
-        <img src="cat-gifts.jpg" alt="Monogrammed mug beside a ribbon-tied gift box" loading="lazy">
-        <div class="cat-body"><div><h3>Gifts &amp;<br>Keepsakes</h3><span class="eyebrow">Shop Now &rarr;</span></div>
-          <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
-      </a>
-      <a class="cat" href="#custom-orders" data-quote data-category="Events &amp; Celebrations">
-        <img src="cat-events.jpg" alt="Acrylic table number sign among candles and peonies" loading="lazy">
-        <div class="cat-body"><div><h3>Events &amp;<br>Celebrations</h3><span class="eyebrow">Shop Now &rarr;</span></div>
-          <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
-      </a>
-      <a class="cat" href="#custom-orders" data-quote data-category="Business &amp; Group Orders">
-        <img src="cat-business.jpg" alt="Folded apparel embroidered with the Nile Crafted Studio logo" loading="lazy">
-        <div class="cat-body"><div><h3>Business &amp;<br>Group Orders</h3><span class="eyebrow">Shop Now &rarr;</span></div>
-          <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
-      </a>
-    </section>
-
-    <section class="features" aria-label="Why shop with us">
+<div class="gl-crest">
+  <h1 class="gl-crest-l">Made with Heart</h1>
+  <a class="gl-crest-logo" href="#top" aria-label="Nile Crafted Studio home"><img src="mark.png" alt="" width="192" height="192"></a>
+  <p class="gl-crest-r gl-crest-h"><em>Designed for Your Story</em></p>
+</div>
+<div id="glFeatTop"><section class="features" aria-label="Why shop with us">
       <ul class="wrap">
         <li>
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h24v20H4zM28 19h8l6 7v6H28z"/><circle cx="12" cy="35" r="3.5"/><circle cx="35" cy="35" r="3.5"/></svg>
@@ -585,18 +528,162 @@
           <div><h4>Quality &amp; Care</h4><p>Thoughtful Details in Every Piece</p></div>
         </li>
       </ul>
-    </section>
-
-    <section class="block weddings" id="weddings" aria-labelledby="weddings-heading">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <p class="eyebrow">Weddings</p>
-          <h2 id="weddings-heading">Wedding gift <em>planning</em></h2>
-          <div class="ornament" aria-hidden="true"><i></i></div>
-          <p>Every moment from &ldquo;yes&rdquo; to &ldquo;thank you,&rdquo; made by hand and made for you.</p>
+    </section></div>
+<div class="gl-medal" aria-hidden="true"><img src="mark.png" alt="" width="72" height="72"></div>
+<nav class="gl-quicklinks" aria-label="Shop collections">
+  <a href="#custom-orders" data-quote data-category="Bridal &amp; Bridal Party Gifts" data-occasion="Wedding">Bridal</a>
+  <a href="#apparel">Apparel</a>
+  <a href="#custom-orders" data-quote data-category="Gifts &amp; Keepsakes">Gifts</a>
+  <a href="#custom-orders" data-quote data-category="Events &amp; Celebrations">Events</a>
+  <a href="#custom-orders" data-quote data-category="Business &amp; Group Orders">Business</a>
+</nav>
+<div class="gl-tabs" role="tablist" aria-label="Choose a side">
+  <button type="button" role="tab" id="glTabL" aria-selected="true"></button><i></i>
+  <button type="button" role="tab" id="glTabR" aria-selected="false"></button>
+</div>
+<div class="gl-split gl-first" id="glFirst">
+  <div class="gl-col" id="L"></div><div class="gl-line"></div><div class="gl-col" id="R"></div>
+</div>
+<section id="apparel" class="gl-panel" hidden aria-label="Custom apparel order">
+  <button type="button" class="gl-panel-x" id="glApparelClose">Close form</button>
+  <div class="wrap"><div data-apparel-order></div></div>
+</section>
+<div id="glFeatC"></div>
+<div id="Mid" class="gl-mid"></div>
+<div class="gl-split gl-second" id="glSecond">
+  <div class="gl-col" id="L2"></div><div class="gl-line"></div><div class="gl-col" id="R2"></div>
+</div>
+<div class="gl-rule"></div>
+<div class="gl-split gl-close">
+  <div class="gl-col" id="faq">
+    <div class="gl-head"><p class="eyebrow">Good to know</p><h2>Questions, <em>answered</em></h2></div>
+    <div class="faq"><details><summary>How do I start a custom order?</summary><p>Tap <a href="#quote" data-quote>Start a Custom Order</a> and tell us the occasion, the names or words you'd like, your colors and your date. It opens your email or messages app with everything filled in, so you just press send. You can also call, text or DM us on Instagram.</p></details><details><summary>Will I see my design before it's made?</summary><p>Yes. We send you a design preview first and adjust it until it's exactly right. Nothing is made until you approve it.</p></details><details><summary>How soon do I need to order?</summary><p>It depends on the piece and the quantity, so share your date as early as you can and we'll tell you what's possible for your timeline.</p></details><details><summary>Do you deliver or ship?</summary><p>We offer local delivery on Staten Island and surrounding areas, and we ship anywhere in the United States. We also ship internationally. Tell us where your order is headed and we'll confirm shipping cost and timing with your design preview.</p></details><details><summary>Can I return or exchange my order?</summary><p>Every piece is made just for you, so all sales are final. If your order arrives damaged, defective or incorrect, send us photos and we'll make it right. <a href="#policy">Read our full policy</a>.</p></details><details><summary>Can you handle large or group orders?</summary><p>Yes. From matching sets for a bridal party to branded apparel for your team, choose Business &amp; Group Orders and tell us how many pieces you need.</p></details>
+      <details><summary>Can I send a logo or photo?</summary><p>Yes. Send your request first, then reply with your logo or photos by email or text. We'll include them in your design preview.</p></details><details id="policy"><summary>Custom Order &amp; Refund Policy</summary><div class="gl-policy"><p>All Nile Crafted Studio products are custom-made and personalized specifically for you. Due to the nature of our customized products, all sales are final and non-refundable.</p><p>Your satisfaction is extremely important to us! If you are not 100% satisfied with your order, please don't hesitate to reach out. We genuinely care about your experience and will do our best to address your concerns and find an appropriate solution.</p><p>If your order arrives damaged, defective, or incorrect, please contact us with photos so we can review the issue and assist you.</p><p class="policy-sign">Thank you for supporting Nile Crafted Studio and allowing us to create something special for you!</p></div></details>
+    </div>
+  </div>
+  <div class="gl-line"></div>
+  <div class="gl-col" id="contact">
+    <div class="gl-head"><p class="eyebrow">Contact</p><h2>Let's create <em>something together</em></h2><p class="gl-sub">Questions, quotes, or a custom idea? Call, text, or email us and we'll get back to you.</p></div>
+    <div class="contact-cards">
+          <a class="contact-card" href="tel:+18624140499">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg>
+            <span class="eyebrow">Call or Text</span>
+            <strong>(862) 414-0499</strong>
+          </a>
+          <a class="contact-card" href="mailto:nilecraftedstudio@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <span class="eyebrow">Email</span>
+            <strong>nilecraftedstudio<wbr>@gmail.com</strong>
+          </a>
+          <a class="contact-card" href="https://www.instagram.com/nilecraftedstudio/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            <span class="eyebrow">Instagram</span>
+            <strong>@nilecraftedstudio</strong>
+          </a>
         </div>
+    <div class="contact-ctas">
+          <a class="btn" href="sms:+18624140499">Text Us</a>
+          <a class="btn" href="mailto:nilecraftedstudio@gmail.com?subject=Custom%20Order%20Inquiry">Email Us</a>
+        </div>
+  </div>
+</div>
 
-        <div class="wc-stage" id="wcStage">
+<div id="glBlocks">
+  <div class="gl-block" data-b="shop" id="shop">
+    <div class="gl-head"><p class="eyebrow" data-a="Shop" data-c="Shop" data-bb="Every Occasion"></p><h2 data-a="Shop <em>collections</em>" data-c="Shop <em>everything else</em>" data-bb="For <em>every occasion</em>"></h2></div>
+    <div class="cats gl-cats" id="glCats"><a class="cat cat-bridal" href="#custom-orders" data-quote data-category="Bridal &amp; Bridal Party Gifts" data-occasion="Wedding">
+        <img src="logo.jpg" alt="Nile Crafted Studio gold monogram with blush flowers" loading="lazy">
+        <div class="cat-body"><div><h3>Bridal &amp; Bridal<br>Party Gifts</h3><span class="eyebrow">Start Yours &rarr;</span></div>
+          <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+      </a><a class="cat" href="#apparel">
+        <img src="cat-apparel.jpg" alt="Cream sweatshirt embroidered with MAMA and a heart" loading="lazy">
+        <div class="cat-body"><div><h3>Personalized<br>Apparel</h3><span class="eyebrow">Start Yours &rarr;</span></div>
+          <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+      </a><a class="cat" href="#custom-orders" data-quote data-category="Gifts &amp; Keepsakes">
+        <img src="cat-gifts.jpg" alt="Monogrammed mug beside a ribbon-tied gift box" loading="lazy">
+        <div class="cat-body"><div><h3>Gifts &amp;<br>Keepsakes</h3><span class="eyebrow">Start Yours &rarr;</span></div>
+          <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+      </a><a class="cat" href="#custom-orders" data-quote data-category="Events &amp; Celebrations">
+        <img src="cat-events.jpg" alt="Acrylic table number sign among candles and peonies" loading="lazy">
+        <div class="cat-body"><div><h3>Events &amp;<br>Celebrations</h3><span class="eyebrow">Start Yours &rarr;</span></div>
+          <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+      </a><a class="cat" href="#custom-orders" data-quote data-category="Business &amp; Group Orders">
+        <img src="cat-business.jpg" alt="Folded apparel embroidered with the Nile Crafted Studio logo" loading="lazy">
+        <div class="cat-body"><div><h3>Business &amp;<br>Group Orders</h3><span class="eyebrow">Start Yours &rarr;</span></div>
+          <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+      </a></div>
+  </div>
+  <div class="gl-block" data-b="steps" id="custom-orders">
+    <div class="gl-head gl-head-s"><p class="eyebrow">Custom Orders</p><h3>How a custom order <em>comes together</em></h3></div>
+    <div class="steps">
+          <div class="step"><h3>Share your idea</h3><p>Tell us the occasion, the names or words you want, colors, and your date.</p></div>
+          <div class="step"><h3>Approve your design</h3><p>We send you a preview to review, and adjust it until it's exactly right.</p></div>
+          <div class="step"><h3>Receive your piece</h3><p>Local delivery on Staten Island and nearby, or shipping anywhere in the US and internationally.</p></div>
+        </div>
+    <div class="center"><a class="btn" href="#contact" data-quote>Start a Custom Order &nbsp;&rarr;</a><br>
+          <span class="promise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>You see a design preview before anything is made</span><p class="gl-rush">Short on time? <a href="sms:+18624140499">Text us your date</a> and we'll let you know what's possible.</p></div>
+  </div>
+  <div class="gl-block" data-b="quick"><section class="quick" id="date-widget" aria-label="Start a custom order">
+      <form class="wrap" data-quickstart>
+        <div class="q-intro"><span class="eyebrow">Planning something special?</span><b>Start with your date</b></div>
+        <label>The occasion
+          <select name="qs-occasion">
+            <option value="">Choose one</option><option>Wedding</option><option>Engagement</option><option>Bridal Shower</option><option>Baby Shower</option><option>Birthday</option><option>Anniversary</option><option>Graduation</option><option>Holiday</option><option>Corporate Event</option><option>Just Because</option><option>Other</option>
+          </select>
+        </label>
+        <label>I'm looking for
+          <select name="qs-cat">
+            <option>Bridal &amp; Bridal Party Gifts</option><option>Personalized Apparel</option><option>Gifts &amp; Keepsakes</option><option>Events &amp; Celebrations</option><option>Business &amp; Group Orders</option><option>Something else</option>
+          </select>
+        </label>
+        <label>Event or need-by date<input type="date" name="qs-date"></label>
+        <button class="btn" type="submit">Start my order &nbsp;&rarr;</button>
+      </form>
+    </section></div>
+  <div class="gl-block" data-b="story" id="about">
+    <div class="gl-head"><p class="eyebrow">Our Story</p><h2>More than gifts. <em>Memories that last.</em></h2></div>
+    <p class="story dropcap">Nile Crafted Studio creates personalized apparel, gifts, and keepsakes for the moments that matter most: birthdays, new babies, weddings, milestones, and the everyday reasons to celebrate.</p>
+    <article class="founder" id="founder" aria-labelledby="founder-heading">
+      <figure class="founder-portrait">
+            <div class="founder-frame"><div><div><img src="randa-portrait.jpg" alt="Oil portrait of Randa, founder of Nile Crafted Studio, at her planning desk with white roses and a fountain pen" loading="lazy" width="764" height="1024"></div></div></div>
+            <figcaption class="founder-plaque"><b>Randa</b><span>Founder</span></figcaption>
+          </figure>
+      <div class="founder-body">
+        <p class="eyebrow">The hand behind every piece</p>
+        <div class="founder-title">
+              <h2 id="founder-heading">Meet the Founder</h2>
+              <svg class="flourish" viewBox="0 0 320 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"><path d="M2 12 C 60 12, 90 4, 150 9"/><path d="M318 12 C 260 12, 230 4, 170 9"/><path d="M160 3 L166 9 L160 15 L154 9 Z" fill="currentColor"/></svg>
+            </div>
+        <h3>Hi, I'm Randa.</h3>
+        <p class="founder-lead">I'm a wife, a mom of three beautiful children, and a certified wedding and event planner.</p>
+        
+      </div>
+        <details class="gl-more"><summary>Read Randa's story</summary>
+          <p>Creativity, design, and bringing joy to others have always been my passion.</p>
+          <ul class="creds" aria-label="About Randa">
+              <li>Certified Wedding &amp; Event Planner</li>
+              <li>Master's in Social Work &amp; International Education</li>
+              <li>Mom of Three</li>
+            </ul>
+          <p>Nile Crafted Studio was born from that love: a place to turn life's meaningful moments into personalized pieces you can cherish forever. From custom apparel and elegant gifts to event details and keepsakes, every piece is made with love, creativity, and an eye for detail.</p>
+            <p>Thank you for supporting my small business and for being part of this journey.</p>
+            <p class="sig">Randa</p>
+            <a class="btn btn-gold" href="https://www.instagram.com/nilecraftedstudio/" target="_blank" rel="noopener noreferrer">DM to bring your vision to life</a>
+        </details>
+    </article>
+    <details class="gl-more gl-more-light" id="glPillars"><summary>What makes each piece special</summary>
+      <p class="story">Every piece begins with your story, the names, dates, and little details that make it yours, and is finished with care so it feels as personal as the moment behind it.</p>
+      <ul class="pillars">
+            <li><b>Personal</b><span>Designed around your names, dates, and story.</span></li>
+            <li><b>Thoughtful</b><span>Every detail considered, from color to ribbon.</span></li>
+            <li><b>Lasting</b><span>Keepsakes made to be treasured for years.</span></li>
+          </ul>
+    </details>
+  </div>
+  <div class="gl-block" data-b="weddings" id="weddings">
+    <div class="gl-head"><p class="eyebrow">Weddings</p><h2 id="weddings-heading">Wedding gift <em>planning</em></h2><p class="gl-sub">Every moment from &ldquo;yes&rdquo; to &ldquo;thank you,&rdquo; made by hand and made for you.</p></div>
+    <div id="glBridalSlot" class="gl-cats-one"></div>
+    <div class="wc-stage" id="wcStage">
           <div class="wc-s1">
             <p class="wc-lead wc-fade">Step inside our carriage to plan your wedding gifts</p>
             <button type="button" class="wc-cbtn" data-wc-open aria-label="Open the carriage doors to plan your wedding gifts"><svg class="wc-cimg" viewBox="80 0 520 300" aria-hidden="true"><defs>
@@ -651,7 +738,7 @@
 <use href="#ncpeony" transform="translate(310,171) scale(.5)"></use>
 <use href="#ncpeony" transform="translate(330,171) scale(.5)"></use>
 </g><path class="heart h1" d="M124,96 c-2.5,-3.5 -8,0 -4.5,4.5 l4.5,3.5 l4.5,-3.5 c3.5,-4.5 -2,-8 -4.5,-4.5z" fill="#e3ad9f"></path><path class="heart h2" d="M150,122 c-2.5,-3.5 -8,0 -4.5,4.5 l4.5,3.5 l4.5,-3.5 c3.5,-4.5 -2,-8 -4.5,-4.5z" fill="#e8bcb0"></path><path class="heart h3" d="M112,82 c-2.5,-3.5 -8,0 -4.5,4.5 l4.5,3.5 l4.5,-3.5 c3.5,-4.5 -2,-8 -4.5,-4.5z" fill="#e3ad9f"></path><g transform="translate(272,48) scale(1)"><use class="spark k0" href="#ncstar" fill="#f6dfa0" stroke="#d9b56a" stroke-width=".6"></use></g><g transform="translate(374,44) scale(0.8)"><use class="spark k1" href="#ncstar" fill="#f6dfa0" stroke="#d9b56a" stroke-width=".6"></use></g><g transform="translate(436,118) scale(0.9)"><use class="spark k2" href="#ncstar" fill="#f6dfa0" stroke="#d9b56a" stroke-width=".6"></use></g><g transform="translate(214,142) scale(0.7)"><use class="spark k3" href="#ncstar" fill="#f6dfa0" stroke="#d9b56a" stroke-width=".6"></use></g><g transform="translate(478,196) scale(0.8)"><use class="spark k4" href="#ncstar" fill="#f6dfa0" stroke="#d9b56a" stroke-width=".6"></use></g><g transform="translate(176,62) scale(0.7)"><use class="spark k0" href="#ncstar" fill="#f6dfa0" stroke="#d9b56a" stroke-width=".6"></use></g><g transform="translate(150,152) scale(0.6)"><use class="spark k1" href="#ncstar" fill="#f6dfa0" stroke="#d9b56a" stroke-width=".6"></use></g><g transform="translate(508,140) scale(0.9)"><use class="spark k2" href="#ncstar" fill="#f6dfa0" stroke="#d9b56a" stroke-width=".6"></use></g><g transform="translate(300,22) scale(0.6)"><use class="spark k3" href="#ncstar" fill="#f6dfa0" stroke="#d9b56a" stroke-width=".6"></use></g><g transform="translate(560,180) scale(0.6)"><use class="spark k4" href="#ncstar" fill="#f6dfa0" stroke="#d9b56a" stroke-width=".6"></use></g><g transform="translate(110,120) scale(0.6)"><use class="spark k0" href="#ncstar" fill="#f6dfa0" stroke="#d9b56a" stroke-width=".6"></use></g><g transform="translate(452,70) scale(0.7)"><use class="spark k1" href="#ncstar" fill="#f6dfa0" stroke="#d9b56a" stroke-width=".6"></use></g></svg></button>
-            <div class="wc-fade"><button type="button" class="wc-hint" data-wc-open>Open the doors</button></div>
+            <div class="wc-fade"><button type="button" class="wc-hint" data-wc-open>Plan your wedding gifts</button><button type="button" class="gl-skip" data-wc-open data-gl-fast>Skip straight to the options</button></div>
           </div>
 
           <div class="wc-s2">
@@ -667,7 +754,7 @@
                   </div>
                   <div class="wc-opts">
                     <a class="wc-opt" href="#wedding-timeline" data-wc-leave><span class="wc-ic"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#a87a3d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span><span class="wc-ot"><b>Gift Timeline</b><span>What to order, and when</span></span></a>
-                    <a class="wc-opt" href="#custom-orders" data-quote data-category="Bridal &amp; Bridal Party Gifts" data-occasion="Wedding"><span class="wc-ic"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#a87a3d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M12 9v11M4 13h16M12 9c-2-4-6-3-5 0M12 9c2-4 6-3 5 0"/></svg></span><span class="wc-ot"><b>Bridal Party</b><span>Proposal boxes &amp; keepsakes</span></span></a>
+                    <a class="wc-opt" href="#custom-orders" data-quote data-category="Bridal &amp; Bridal Party Gifts" data-occasion="Wedding"><span class="wc-ic"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#a87a3d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M12 9v11M4 13h16M12 9c-2-4-6-3-5 0M12 9c2-4 6-3 5 0"/></svg></span><span class="wc-ot"><b>Bridal Party</b><span>For bridesmaids &amp; groomsmen</span></span></a>
                     <a class="wc-opt" href="#custom-orders" data-quote data-category="Events &amp; Celebrations" data-occasion="Bridal Shower"><span class="wc-ic"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#a87a3d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10l-5 8zM12 11v8M8 21h8"/></svg></span><span class="wc-ot"><b>Shower &amp; Bachelorette</b><span>Tees, favors &amp; party touches</span></span></a>
                     <a class="wc-opt" href="#custom-orders" data-quote data-category="Personalized Apparel" data-occasion="Wedding"><span class="wc-ic"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#a87a3d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l3 4-3 2v12H8V9L5 7z"/></svg></span><span class="wc-ot"><b>Getting Ready</b><span>Pajamas &amp; robes for photos</span></span></a>
                     <a class="wc-opt" href="#custom-orders" data-quote data-category="Gifts &amp; Keepsakes" data-occasion="Wedding"><span class="wc-ic"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#a87a3d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.5-7 10-7 10z"/></svg></span><span class="wc-ot"><b>Big Day &amp; Thank-Yous</b><span>Gifts for family &amp; helpers</span></span></a>
@@ -704,9 +791,9 @@
             </div>
           </div>
         </div>
-
-        <div class="wc-timeline reveal" id="wedding-timeline">
-          <h3>Your gift timeline</h3>
+    <details class="gl-more gl-more-light" id="glTimeline"><summary>See your gift timeline</summary>
+      <div class="wc-timeline" id="wedding-timeline">
+          
           <p>Custom pieces take time. Here&rsquo;s a suggested guide for when to order.</p>
           <ol class="wc-tl">
             <li><p class="eyebrow">8&ndash;10 weeks before</p><h4>Bridal party gifts</h4><p>Proposal boxes and personalized keepsakes for bridesmaids and groomsmen.</p></li>
@@ -716,86 +803,11 @@
           </ol>
           <p class="wc-note">Short on time? <a href="#custom-orders" data-quote data-category="Bridal &amp; Bridal Party Gifts" data-occasion="Wedding">Tell us your date</a> and we&rsquo;ll let you know what&rsquo;s possible.</p>
         </div>
-      </div>
-    </section>
-
-    <section class="block about" id="about">
-      <div class="wrap about-grid">
-        <figure class="story-art reveal">
-          <img src="logo.jpg" alt="Nile Crafted Studio logo: a gold N monogram with pink flowers" width="1200" height="800" loading="lazy">
-        </figure>
-        <div>
-          <p class="eyebrow">Our Story</p>
-          <h2>More than gifts.<br><em>Memories that last.</em></h2>
-          <p class="story dropcap">Nile Crafted Studio creates personalized apparel, gifts, and keepsakes for the moments that matter most: birthdays, new babies, weddings, milestones, and the everyday reasons to celebrate.</p>
-          <p class="story">Every piece begins with your story, the names, dates, and little details that make it yours, and is finished with care so it feels as personal as the moment behind it.</p>
-          <ul class="pillars">
-            <li><b>Personal</b><span>Designed around your names, dates, and story.</span></li>
-            <li><b>Thoughtful</b><span>Every detail considered, from color to ribbon.</span></li>
-            <li><b>Lasting</b><span>Keepsakes made to be treasured for years.</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="wrap">
-        <article class="founder" id="founder" aria-labelledby="founder-heading">
-          <figure class="founder-portrait">
-            <div class="founder-frame"><div><div><img src="randa-portrait.jpg" alt="Oil portrait of Randa, founder of Nile Crafted Studio, at her planning desk with white roses and a fountain pen" loading="lazy" width="764" height="1024"></div></div></div>
-            <figcaption class="founder-plaque"><b>Randa</b><span>Founder</span></figcaption>
-          </figure>
-          <div class="founder-body">
-            <p class="eyebrow">The hand behind every piece</p>
-            <div class="founder-title">
-              <h2 id="founder-heading">Meet the Founder</h2>
-              <svg class="flourish" viewBox="0 0 320 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"><path d="M2 12 C 60 12, 90 4, 150 9"/><path d="M318 12 C 260 12, 230 4, 170 9"/><path d="M160 3 L166 9 L160 15 L154 9 Z" fill="currentColor"/></svg>
-            </div>
-            <h3>Hi, I'm Randa.</h3>
-            <p class="founder-lead">I'm a wife, a mom of three beautiful children, and a certified wedding and event planner. Creativity, design, and bringing joy to others have always been my passion.</p>
-            <ul class="creds" aria-label="About Randa">
-              <li>Certified Wedding &amp; Event Planner</li>
-              <li>Master's in Social Work &amp; International Education</li>
-              <li>Mom of Three</li>
-            </ul>
-            <p>Nile Crafted Studio was born from that love: a place to turn life's meaningful moments into personalized pieces you can cherish forever. From custom apparel and elegant gifts to event details and keepsakes, every piece is made with love, creativity, and an eye for detail.</p>
-            <p>Thank you for supporting my small business and for being part of this journey.</p>
-            <p class="sig">Randa</p>
-            <a class="btn btn-gold" href="https://www.instagram.com/nilecraftedstudio/" target="_blank" rel="noopener noreferrer">DM to bring your vision to life</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="block" id="custom-orders">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <p class="eyebrow">Custom Orders</p>
-          <h2>Bring your vision <em>to life</em></h2>
-          <div class="ornament" aria-hidden="true"><i></i></div>
-          <p>From a single keepsake to matching sets for your whole team, here's how a custom order comes together.</p>
-        </div>
-        <div class="steps reveal">
-          <div class="step"><h3>Share your idea</h3><p>Tell us the occasion, the names or words you want, colors, and your date.</p></div>
-          <div class="step"><h3>Approve your design</h3><p>We send you a preview to review, and adjust it until it's exactly right.</p></div>
-          <div class="step"><h3>Receive your piece</h3><p>Local delivery on Staten Island and nearby, or shipping anywhere in the US and internationally.</p></div>
-        </div>
-        <div class="center"><a class="btn" href="#contact" data-quote>Start a Custom Order &nbsp;&rarr;</a><br>
-          <span class="promise"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>You see a design preview before anything is made</span></div>
-      </div>
-    </section>
-
-    <section class="block apparel" id="apparel" aria-label="Custom apparel order">
-      <div class="wrap">
-        <div data-apparel-order></div>
-      </div>
-    </section>
-
-    <section class="block gallery" id="gallery">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <p class="eyebrow">Gallery</p>
-          <h2>Crafted <em>with care</em></h2>
-          <div class="ornament" aria-hidden="true"><i></i></div>
-        </div>
-        <div class="gallery-grid reveal">
+    </details>
+  </div>
+  <div class="gl-block" data-b="gallery" id="gallery">
+    <div class="gl-head gl-head-s"><p class="eyebrow">Gallery</p><h3>Crafted <em>with care</em></h3></div>
+    <div class="gallery-grid">
           <img src="cat-apparel.jpg" alt="Personalized MAMA sweatshirt" loading="lazy">
           <img src="cat-gifts.jpg" alt="Monogrammed mug and gift box" loading="lazy">
           <img src="cat-events.jpg" alt="Table number sign for an event" loading="lazy">
@@ -806,76 +818,10 @@
             <strong>More of our work on Instagram</strong>
             <span class="gallery-more-btn">@nilecraftedstudio &rarr;</span>
           </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="block" id="faq">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <p class="eyebrow">Good to know</p>
-          <h2>Questions, <em>answered</em></h2>
-          <div class="ornament" aria-hidden="true"><i></i></div>
-        </div>
-        <div class="faq reveal">
-          <details><summary>How do I start a custom order?</summary><p>Tap <a href="#quote" data-quote>Start a Custom Order</a> and tell us the occasion, the names or words you'd like, your colors and your date. It opens your email or messages app with everything filled in, so you just press send. You can also call, text or DM us on Instagram.</p></details>
-          <details><summary>Will I see my design before it's made?</summary><p>Yes. We send you a design preview first and adjust it until it's exactly right. Nothing is made until you approve it.</p></details>
-          <details><summary>How soon do I need to order?</summary><p>It depends on the piece and the quantity, so share your date as early as you can and we'll tell you what's possible for your timeline.</p></details>
-          <details><summary>Do you deliver or ship?</summary><p>We offer local delivery on Staten Island and surrounding areas, and we ship anywhere in the United States. We also ship internationally. Tell us where your order is headed and we'll confirm shipping cost and timing with your design preview.</p></details>
-          <details><summary>Can I return or exchange my order?</summary><p>Every piece is made just for you, so all sales are final. If your order arrives damaged, defective or incorrect, send us photos and we'll make it right. <a href="#policy">Read our full policy</a>.</p></details>
-          <details><summary>Can you handle large or group orders?</summary><p>Yes. From matching sets for a bridal party to branded apparel for your team, choose Business &amp; Group Orders and tell us how many pieces you need.</p></details>
-        </div>
-      </div>
-    </section>
-
-    <section class="block policy" id="policy">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <p class="eyebrow">Our promise</p>
-          <h2>Custom Order &amp; <em>Refund Policy</em></h2>
-          <div class="ornament" aria-hidden="true"><i></i></div>
-        </div>
-        <div class="policy-card reveal">
-          <p>All Nile Crafted Studio products are custom-made and personalized specifically for you. Due to the nature of our customized products, all sales are final and non-refundable.</p>
-          <p>Your satisfaction is extremely important to us! If you are not 100% satisfied with your order, please don't hesitate to reach out. We genuinely care about your experience and will do our best to address your concerns and find an appropriate solution.</p>
-          <p>If your order arrives damaged, defective, or incorrect, please contact us with photos so we can review the issue and assist you.</p>
-          <p class="policy-sign">Thank you for supporting Nile Crafted Studio and allowing us to create something special for you!</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="block contact" id="contact">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <p class="eyebrow">Contact</p>
-          <h2>Let's create <em>something together</em></h2>
-          <div class="ornament" aria-hidden="true"><i></i></div>
-          <p>Questions, quotes, or a custom idea? Call, text, or email us and we'll get back to you.</p>
-        </div>
-        <div class="contact-cards reveal">
-          <a class="contact-card" href="tel:+18624140499">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg>
-            <span class="eyebrow">Call or Text</span>
-            <strong>(862) 414-0499</strong>
-          </a>
-          <a class="contact-card" href="mailto:nilecraftedstudio@gmail.com">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            <span class="eyebrow">Email</span>
-            <strong>nilecraftedstudio<wbr>@gmail.com</strong>
-          </a>
-          <a class="contact-card" href="https://www.instagram.com/nilecraftedstudio/" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-            <span class="eyebrow">Instagram</span>
-            <strong>@nilecraftedstudio</strong>
-          </a>
-        </div>
-        <div class="contact-ctas">
-          <a class="btn" href="sms:+18624140499">Text Us</a>
-          <a class="btn" href="mailto:nilecraftedstudio@gmail.com?subject=Custom%20Order%20Inquiry">Email Us</a>
-        </div>
-      </div>
-    </section>
-  </main>
+</div>
+  </div>
+</div>
+</main>
 
   <footer>
     <div class="wrap foot">
@@ -906,10 +852,11 @@
   </button>
 
   <script src="site.js?v=20261024b" defer></script>
-  <script src="nile-quote.js?v=20261024b" defer></script>
-  <script src="nile-apparel.js?v=20261024b" defer></script>
+  <script src="nile-quote.js?v=20261105" defer></script>
+  <script src="nile-apparel.js?v=20261105" defer></script>
   <script src="nile-musicbox.js?v=20261102b" defer></script>
   <script src="nile-carriage.js?v=20261031" defer></script>
   <script src="nile-lotus-egg.js?v=20261102b" defer></script>
+  <script src="golden.js?v=20261105" defer></script>
 </body>
 </html>

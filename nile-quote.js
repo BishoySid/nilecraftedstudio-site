@@ -198,8 +198,10 @@
     done.innerHTML = '<h3 class="ncq-title" style="font-size:26px">Almost there</h3>' +
       '<p class="ncq-sub">Your ' + (via === 'sms' ? 'messages' : 'email') + ' app should open with your request. Tap send and we\'ll be in touch.</p>' +
       '<p class="ncq-sub">Didn\'t open? Call or text <a href="tel:' + CONFIG.sms + '">' + CONFIG.phoneLabel + '</a> or email <a href="mailto:' + CONFIG.email + '">' + CONFIG.email + '</a>.</p>' +
-      '<div class="ncq-actions"><button type="button" class="ncq-btn alt" data-ncq-close>Close</button></div>';
+      '<div class="ncq-actions"><button type="button" class="ncq-btn" data-ncq-copy>Copy my request</button><button type="button" class="ncq-btn alt" data-ncq-close>Close</button></div>';
     dialog.appendChild(done);
+    var cp = done.querySelector('[data-ncq-copy]');
+    cp.addEventListener('click', function () { navigator.clipboard.writeText(body).then(function () { cp.textContent = 'Copied'; }, function () { cp.textContent = 'Copy not available'; }); });
     form.reset();
   }
 

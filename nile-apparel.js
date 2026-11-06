@@ -17,15 +17,15 @@
   };
 
   var OCCASIONS = [
-    ['Birthdays', ['Kids Birthday Party', "Baby's First Birthday", 'Adult Birthday Party', 'Sweet 16 / Quinceañera', 'Disney-Themed Birthday / Disney Characters', 'Princess / Fairytale Party', 'Superhero / Cartoon Character Party']],
+    ['Birthdays', ['Kids Birthday Party', "Baby's First Birthday", 'Adult Birthday Party', 'Sweet 16 / Quinceañera', 'Character-Themed Birthday', 'Princess / Fairytale Party', 'Superhero-Themed Party']],
     ['Weddings & love', ['Wedding / Bridal Shower', 'Bachelorette / Bachelor Party', 'Engagement Party', 'Anniversary', "Valentine's Day"]],
-    ['Holidays', ['Christmas', 'Halloween', 'Easter', 'Thanksgiving', "New Year's Celebration"]],
+    ['Holidays', ['Christmas', 'Halloween', 'Easter', 'Thanksgiving', "New Year's Celebration", 'Hanukkah', 'Eid', 'Diwali']],
     ['Family & faith', ['Family Reunion', 'Mommy & Me / Daddy & Me', 'Baby Shower / Gender Reveal', 'Baptism / Christening', 'First Communion / Confirmation', 'Memorial / Celebration of Life']],
-    ['Trips', ['Disney Vacation / Matching Family Outfits', 'Family Vacation / Cruise', 'Summer Camp']],
+    ['Trips', ['Theme Park Vacation / Matching Family Outfits', 'Family Vacation / Cruise', 'Summer Camp']],
     ['School, teams & work', ['Graduation / School Celebration', 'School Spirit / PTA / Class Trip', 'Sports / Dance Team', 'Corporate / Business Logo Shirts', 'Fundraiser / Charity Event']],
     ['Just because', ["Girls' Night / Friends Gathering", 'Custom Gift / Just Because', 'Other']]
   ];
-  var CHARACTER = /Disney|Princess|Superhero/;
+  var CHARACTER = /Character|Princess|Superhero/;
   // one fine-line icon per occasion family (same order as OCCASIONS)
   var ICONS = [
     '<path d="M5 21h14M6 21v-7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7"/><path d="M6 16.5c1.5 1 2.5 1 4 0s2.5-1 4 0 2.5 1 4 0"/><path d="M12 13V9.5M12 8a1.4 1.4 0 0 1-1.4-1.4C10.6 5.5 12 4 12 4s1.4 1.5 1.4 2.6A1.4 1.4 0 0 1 12 8Z"/>',
