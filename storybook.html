@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.googleusercontent.com; connect-src 'self' https://apis.google.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com https://www.googleapis.com https://nile-crafted-studio.firebaseapp.com; frame-src https://nile-crafted-studio.firebaseapp.com https://accounts.google.com https://appleid.apple.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Crafted Tales · Randa's Storybook | Nile Crafted Studio</title>
+<meta name="description" content="Page through Randa's storybook of custom apparel, gifts, keepsakes and event pieces from Nile Crafted Studio.">
+<link rel="canonical" href="https://www.nilecraftedstudio.com/storybook.html">
+<meta property="og:title" content="Crafted Tales · Randa's Storybook">
+<meta property="og:description" content="Custom apparel, gifts and keepsakes from Nile Crafted Studio, told as a storybook.">
+<meta property="og:image" content="https://www.nilecraftedstudio.com/logo.jpg">
+<meta property="og:url" content="https://www.nilecraftedstudio.com/storybook.html">
+<meta name="theme-color" content="#16101f">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@500&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap">
+<style>
+[hidden]{display:none!important}
+/* Layout: one candlelit night scene; a 3D storybook centered on a velvet table, pages turn around the spine. Single deliberate dark look. */
+:root{
+  --night:#16101f; --velvet:#2a1830; --glow:#f6d9a0;
+  --leather:#5a1f33; --leather-2:#3e1424; --gold:#d8b26a; --gold-2:#f3dca4; --gold-deep:#9a7233;
+  --paper:#f6ecda; --paper-2:#ead9bd; --ink:#3a2618; --ink-soft:#6e5440; --blush:#c98b8b;
+  --display:"Cinzel Decorative","Cinzel",Georgia,serif;
+  --caps:"Cinzel",Georgia,serif;
+  --text:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .32 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --pebble:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='turbulence' baseFrequency='.42' numOctaves='2' stitchTiles='stitch' seed='7'/%3E%3CfeDiffuseLighting lighting-color='%23ffffff' surfaceScale='1.4'%3E%3CfeDistantLight azimuth='225' elevation='58'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.13'/%3E%3C/svg%3E");
+  --paper-grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 .42  0 0 0 0 .30  0 0 0 0 .16  0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  --fibers:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.02' numOctaves='4' stitchTiles='stitch' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 .62  0 0 0 0 .46  0 0 0 0 .26  0 0 0 .2 -.06'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  color-scheme:dark;
+}
+@property --float{syntax:'<length>';inherits:true;initial-value:0px}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--night);color:var(--gold-2);font-family:var(--text);overflow:hidden;
+  padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px))}
+.scene{position:fixed;inset:0;display:grid;grid-template-rows:auto 1fr auto;
+  background:
+    radial-gradient(60% 45% at 50% 58%, rgba(246,217,160,.16), transparent 70%),
+    radial-gradient(120% 80% at 50% 120%, var(--velvet), transparent 60%),
+    linear-gradient(180deg,#120c1a,var(--night) 40%,#1d1226);
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.top{display:flex;justify-content:center;padding:18px max(16px,env(safe-area-inset-left,0px)) 0;text-align:center}
+.top>div>p:first-child{margin:0;font-family:var(--caps);letter-spacing:.32em;font-size:12px;color:var(--gold);opacity:.85;text-transform:uppercase}
+.stage{position:relative;perspective:2400px;perspective-origin:50% 30%;display:grid;place-items:center;overflow:hidden;min-height:0}
+.tilt{position:absolute;left:50%;top:50%;margin-left:calc(var(--bw) / -2);margin-top:calc(var(--bh) / -2);width:var(--bw);height:var(--bh);transform-style:preserve-3d;
+  transform:translateY(calc(var(--ty,0px) + var(--float))) rotateX(var(--rx)) rotateZ(var(--rz)) rotateY(var(--ry));
+  transition:transform 1.4s cubic-bezier(.3,.1,.2,1)}
+.book{position:absolute;inset:0;transform-style:preserve-3d;transform:translateX(var(--shift));transition:transform 1.4s cubic-bezier(.45,.05,.15,1);user-select:none;-webkit-user-select:none;touch-action:pan-y}
+.scene:not(.is-open):not(.opening) .tilt{animation:float 5.5s ease-in-out infinite}
+@keyframes float{50%{--float:-10px}}
+/* soft shadow on the table */
+.shadow{position:absolute;left:28%;right:-2%;top:6%;bottom:-6%;background:radial-gradient(closest-side,rgba(0,0,0,.65),transparent);transform:translateZ(-30px);filter:blur(12px);transition:left .9s,right .9s}
+.is-open .shadow{left:-4%;right:-4%}
+/* back cover board (right) and the page block edges */
+.board{position:absolute;left:50%;top:-1.2%;width:51.2%;height:102.4%;border-radius:0 10px 10px 0;
+  background:var(--pebble),var(--grain),linear-gradient(90deg,var(--leather-2),var(--leather) 12%,var(--leather) 88%,var(--leather-2));transform:translateZ(-6px)}
+.block{position:absolute;left:50%;top:0;width:50%;height:100%;transform:translateZ(-3px);border-radius:0 4px 4px 0;
+  background:repeating-linear-gradient(90deg,#e7d6b8 0 1px,#f4e8d2 1px 3px);box-shadow:inset -2px 0 0 #d9c39c}
+.block::after{content:"";position:absolute;top:0;bottom:0;right:-1px;width:5px;border-radius:0 3px 3px 0;background:linear-gradient(180deg,#f6e2a8,#b98a3e 30%,#f3d58c 55%,#a87a3d 80%,#f1d89a)}
+.ribbon{position:absolute;left:calc(50% + 3px);top:96%;width:2.2%;height:11%;transform:translateZ(-1px);pointer-events:none;
+  background:linear-gradient(90deg,#7e3343,#c97a85 45%,#9c4b59);clip-path:polygon(0 0,100% 0,100% 100%,50% 88%,0 100%)}
+.leaf{position:absolute;left:50%;top:0;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;
+  transition:transform 1.15s cubic-bezier(.45,.05,.2,1)}
+.leaf.slow{transition-duration:1.8s;transition-timing-function:cubic-bezier(.55,0,.15,1)}
+.face::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:linear-gradient(90deg,rgba(40,20,5,0) 10%,rgba(40,20,5,.32) 62%,rgba(255,240,205,.28) 80%,rgba(40,20,5,.22))}
+.face.back::after{transform:scaleX(-1)}
+.leaf.turning .face::after{animation:turnShade 1.15s ease-in-out}
+.leaf.slow.turning .face::after{animation-duration:1.8s}
+  .leaf.dragging .face::after{opacity:calc(var(--shade,0) * .9)}
+@keyframes turnShade{0%{opacity:0}45%{opacity:1}100%{opacity:0}}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;container-type:size}
+.face.back{transform:rotateY(180deg)}
+/* pages */
+.page{background:
+   linear-gradient(90deg,rgba(70,45,20,.34),rgba(70,45,20,.08) 5%,transparent 11%),
+   radial-gradient(120% 90% at 50% 40%,transparent 58%,rgba(140,100,50,.22)),
+   radial-gradient(6% 4% at 78% 84%,rgba(160,110,50,.10),transparent),
+   radial-gradient(4% 3% at 22% 12%,rgba(160,110,50,.08),transparent),
+   var(--fibers),var(--paper-grain),
+   var(--paper);color:var(--ink);border-radius:0 4px 4px 0}
+.face.back.page{background:
+   linear-gradient(270deg,rgba(70,45,20,.34),rgba(70,45,20,.08) 5%,transparent 11%),
+   radial-gradient(120% 90% at 50% 40%,transparent 58%,rgba(140,100,50,.22)),
+   radial-gradient(5% 4% at 18% 80%,rgba(160,110,50,.10),transparent),
+   var(--fibers),var(--paper-grain),
+   var(--paper);border-radius:4px 0 0 4px}
+.pg{position:absolute;inset:7cqh 9cqw 6cqh 11cqw;display:flex;flex-direction:column;gap:2.4cqh}
+.back .pg{inset:7cqh 11cqw 6cqh 9cqw}
+.pg.center{justify-content:center;align-items:center;text-align:center}
+.pg>*,.plate>*{transition:opacity .9s ease,transform .9s ease,filter .9s ease}
+.face:not(.on) .pg>*,.face:not(.on) .plate>*{opacity:0;transform:translateY(1.4cqh);filter:blur(3px);transition-duration:0s}
+.face.on .pg>:nth-child(2),.face.on .plate>:nth-child(2){transition-delay:.12s}
+.face.on .pg>:nth-child(3),.face.on .plate>:nth-child(3){transition-delay:.24s}
+.face.on .pg>:nth-child(4),.face.on .plate>:nth-child(4){transition-delay:.38s}
+.face.on .pg>:nth-child(5){transition-delay:.52s}
+.face.on .pg>:nth-child(6){transition-delay:.66s}
+.face.on .pg>:nth-child(7){transition-delay:.8s}
+.folio{position:absolute;bottom:3cqh;left:0;right:0;text-align:center;font-family:var(--caps);font-size:2.6cqw;letter-spacing:.2em;color:var(--ink-soft)}
+.eyebrow{margin:0;font-family:var(--caps);font-size:3cqw;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-deep)}
+.pg h2{margin:0;font-family:var(--display);font-weight:400;font-size:7.4cqw;line-height:1.05;color:var(--ink);text-wrap:balance}
+.pg p{margin:0;font-size:4.5cqw;line-height:1.42;color:var(--ink)}
+.pg .soft{color:var(--ink-soft);font-style:italic}
+.drop::first-letter{float:left;font-family:var(--display);font-weight:700;font-size:15cqw;line-height:.82;margin:1.2cqw 2cqw 0 0;color:var(--gold-deep)}
+.rule{height:2.4cqh;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12'%3E%3Cpath d='M0 6h80M120 6h80' stroke='%239a7233' stroke-width='1'/%3E%3Cpath d='M100 1l5 5-5 5-5-5z' fill='%239a7233'/%3E%3Ccircle cx='86' cy='6' r='1.6' fill='%239a7233'/%3E%3Ccircle cx='114' cy='6' r='1.6' fill='%239a7233'/%3E%3C/svg%3E")}
+.sign{font-family:var(--display);font-size:6cqw;color:var(--gold-deep);margin-top:auto !important;text-align:right}
+/* picture pages */
+.frame{position:relative;margin:auto 0;padding:2.6cqw;border-radius:46% 46% 4px 4px / 22% 22% 4px 4px;
+  background:linear-gradient(145deg,var(--gold-2),var(--gold) 30%,var(--gold-deep) 60%,var(--gold-2));
+  box-shadow:0 1.4cqw 3cqw rgba(60,35,10,.35)}
+.frame img{display:block;width:100%;aspect-ratio:2/1.25;object-fit:cover;border-radius:44% 44% 2px 2px / 24% 24% 2px 2px}
+.frame.empty div{aspect-ratio:2/1.25;border-radius:44% 44% 2px 2px / 24% 24% 2px 2px;display:grid;place-items:center;
+  background:radial-gradient(circle at 50% 45%,#fff7e6,var(--paper-2));color:var(--gold-deep);font-family:var(--display);font-size:9cqw}
+.caption{font-size:4cqw !important;text-align:center;font-style:italic;color:var(--ink-soft) !important}
+.chap{font-family:var(--display);font-size:13cqw;color:var(--gold-deep);text-align:center;line-height:1}
+/* cover */
+.cover{background:
+   radial-gradient(90% 70% at 40% 30%,rgba(255,220,200,.12),transparent 60%),
+   var(--pebble),var(--grain),
+   radial-gradient(70% 50% at 70% 85%,rgba(0,0,0,.22),transparent),
+   linear-gradient(90deg,var(--leather-2),var(--leather) 9%,var(--leather) 92%,#4a1829);
+  border-radius:3px 12px 12px 3px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.4)}
+.cover::before{content:"";position:absolute;inset:2.4cqw;border:1px solid rgba(0,0,0,.45);border-radius:2px 9px 9px 2px;box-shadow:1px 1px 0 rgba(255,255,255,.07),inset 1px 1px 0 rgba(255,255,255,.05);pointer-events:none}
+.cap{position:absolute;width:10cqw;height:10cqw;background:linear-gradient(135deg,#fbe7b0,#c99a4b 45%,#8a6227 70%,#e9c886);pointer-events:none;filter:drop-shadow(0 .4cqw .6cqw rgba(0,0,0,.4))}
+.cap.tr{top:0;right:0;clip-path:polygon(0 0,100% 0,100% 100%);border-radius:0 12px 0 0}
+.cap.br{bottom:0;right:0;clip-path:polygon(100% 0,100% 100%,0 100%);border-radius:0 0 12px 0}
+.cover-in{position:absolute;inset:5cqw;border:.5cqw solid var(--gold);border-radius:2px 8px 8px 2px;
+  box-shadow:inset 0 0 0 1.6cqw transparent,inset 0 0 0 1.9cqw var(--gold-deep);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3.4cqh;text-align:center;padding:10cqw}
+.corner{position:absolute;width:15cqw;height:15cqw;color:var(--gold)}
+.corner.tl{top:2.4cqw;left:2.4cqw}.corner.tr{top:2.4cqw;right:2.4cqw;transform:scaleX(-1)}
+.corner.bl{bottom:2.4cqw;left:2.4cqw;transform:scaleY(-1)}.corner.br{bottom:2.4cqw;right:2.4cqw;transform:scale(-1)}
+.medal{width:34cqw;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 40% 35%,#fff6e3,#efdcb5 60%,#c9a466);box-shadow:0 0 0 1cqw var(--gold-deep),0 0 0 1.5cqw var(--gold),0 1cqw 4cqw rgba(0,0,0,.5)}
+.medal img{width:78%;height:auto}
+.cover h1{margin:0;font-family:var(--display);font-weight:700;font-size:10cqw;line-height:1;letter-spacing:.02em;
+  background:linear-gradient(100deg,#a87a3d 0%,#e9c886 18%,#fff7da 24%,#e9c886 30%,#b88a45 50%,#f3dca4 70%,#a87a3d 100%);background-size:320% 100%;background-position:100% 0;
+  -webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 .3cqw 0 rgba(0,0,0,.35));animation:foil 7s ease-in-out infinite}
+@keyframes foil{0%,50%{background-position:100% 0}85%,100%{background-position:0 0}}
+.medal{position:relative}
+.medal::after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.55) 48%,transparent 60%);background-size:300% 100%;background-position:100% 0;animation:foil 7s ease-in-out infinite;animation-delay:.25s;pointer-events:none}
+.cover .sub{margin:0;font-family:var(--caps);font-size:3.2cqw;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-2)}
+.spine-shine{position:absolute;inset:0 auto 0 0;width:7%;background:linear-gradient(90deg,rgba(0,0,0,.35),rgba(255,255,255,.06),transparent)}
+/* inside cover: endpaper with bookplate */
+.endpaper{background:
+  radial-gradient(circle at 25% 25%,rgba(201,139,139,.35) 0 9%,transparent 10%),
+  radial-gradient(circle at 75% 75%,rgba(201,139,139,.35) 0 9%,transparent 10%),
+  radial-gradient(circle at 75% 25%,rgba(216,178,106,.35) 0 4%,transparent 5%),
+  radial-gradient(circle at 25% 75%,rgba(216,178,106,.35) 0 4%,transparent 5%),
+  var(--paper-grain),#efdcc4;background-size:14cqw 14cqw,14cqw 14cqw,14cqw 14cqw,14cqw 14cqw,200px 200px,auto;border-radius:12px 3px 3px 12px}
+.endpaper::before{content:"";position:absolute;inset:0;border:2.6cqw solid var(--leather);border-radius:12px 3px 3px 12px;pointer-events:none}
+.plate{position:absolute;inset:12cqh 13cqw;background:var(--paper);border:1px solid var(--gold-deep);box-shadow:0 0 0 1.2cqw var(--paper),0 0 0 1.4cqw var(--gold-deep),0 1cqw 3cqw rgba(60,30,10,.25);
+  display:flex;flex-direction:column;align-items:center;gap:2.6cqh;padding:7cqh 8cqw;text-align:center;color:var(--ink)}
+.plate .ex{font-family:var(--display);font-size:8cqw;color:var(--gold-deep);margin:0}
+.toc{list-style:none;margin:0;padding:0;display:grid;gap:1.6cqh;width:100%}
+.toc button{all:unset;cursor:pointer;display:flex;gap:2cqw;align-items:baseline;width:100%;font-size:4.2cqw;color:var(--ink)}
+.toc button span:first-child{font-family:var(--caps);color:var(--gold-deep);min-width:7cqw}
+.toc button i{flex:1;border-bottom:1px dotted var(--ink-soft);transform:translateY(-1cqw)}
+.toc button:hover,.toc button:focus-visible{color:var(--leather)}
+.toc button:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px}
+.cta{display:flex;flex-direction:column;gap:2cqh;align-items:center;margin-top:1cqh}
+.cta a{font-family:var(--caps);font-size:3.6cqw;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--paper);background:linear-gradient(180deg,#6b2740,var(--leather-2));padding:2.4cqw 5cqw;border-radius:999px;box-shadow:0 0 0 .5cqw var(--gold)}
+.cta a.alt{background:none;color:var(--leather);box-shadow:none;text-transform:none;letter-spacing:.04em;font-family:var(--text);font-size:4.4cqw;font-style:italic}
+.cta a:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px}
+/* hint + controls */
+.hint{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);margin:0;font-family:var(--text);font-style:italic;font-size:19px;color:var(--gold-2);opacity:.9;pointer-events:none;
+  text-shadow:0 0 12px rgba(246,217,160,.6);animation:breathe 2.8s ease-in-out infinite;white-space:nowrap;transition:opacity .5s}
+.is-open .hint,.opening .hint{opacity:0;animation:none}
+.tip{margin:6px 0 0;min-height:1.4em;font-style:italic;font-size:15px;color:var(--gold-2);opacity:0;pointer-events:none;white-space:nowrap;transition:opacity 1s}
+.tip.show{opacity:.8}
+@keyframes breathe{50%{opacity:.45}}
+.bar{display:flex;justify-content:center;align-items:center;gap:14px;padding:10px max(16px,env(safe-area-inset-left,0px)) 18px;opacity:0;transition:opacity .6s .6s;pointer-events:none}
+.is-open .bar{opacity:1;pointer-events:auto}
+.bar button{width:48px;height:48px;border-radius:50%;border:1px solid rgba(216,178,106,.55);background:rgba(42,24,48,.6);color:var(--gold-2);font-size:20px;cursor:pointer;display:grid;place-items:center}
+.bar button:disabled{opacity:.3;cursor:default}
+.bar button:focus-visible{outline:2px solid var(--gold-2);outline-offset:3px}
+.bar .where{flex:0 1 16em;text-align:center;font-family:var(--caps);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.bar .closeb{width:auto;padding:0 16px;border-radius:999px;font-family:var(--caps);font-size:11px;letter-spacing:.2em}
+#dust{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.book-btn{position:absolute;top:0;bottom:0;left:50%;right:0;z-index:2;transform:translateZ(8px);cursor:pointer;background:none;border:0;border-radius:12px}
+.book-btn:focus-visible{outline:2px solid var(--gold-2);outline-offset:6px}
+.is-open .book-btn{display:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){.tilt,.book,.leaf{transition-duration:.01s}.hint,.tilt,.cover h1,.medal::after{animation:none!important}.pg>*,.plate>*{transition:none!important}}
+
+/* sign-in gate */
+.gate{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:24px max(16px,env(safe-area-inset-left,0px));background:rgba(12,8,16,.62);opacity:0;transition:opacity .3s}
+.gate[hidden]{display:none}
+.gate.in{opacity:1}
+.gate-card{position:relative;width:min(420px,100%);padding:34px 28px 24px;border-radius:14px;text-align:center;color:var(--ink);
+  background:var(--fibers),var(--paper-grain),var(--paper);box-shadow:0 0 0 1px var(--gold-deep),0 0 0 7px var(--paper),0 0 0 8px var(--gold-deep),0 30px 70px rgba(0,0,0,.55);
+  transform:translateY(14px) scale(.97);transition:transform .35s cubic-bezier(.3,.1,.2,1);display:grid;gap:14px}
+.gate.in .gate-card{transform:none}
+.gate-card .g-eyebrow{margin:0;font-family:var(--caps);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep)}
+.gate-card h2{margin:0;font-family:var(--display);font-weight:400;font-size:28px;line-height:1.1}
+.gate-card .g-lede{margin:0;font-size:18px;line-height:1.4;color:var(--ink-soft)}
+.sbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:48px;border-radius:8px;font:600 16px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;cursor:pointer}
+.sbtn svg{width:18px;height:18px;flex:none}
+.sbtn.apple{background:#000;color:#fff;border:1px solid #000}
+.sbtn.google{background:#fff;color:#1f1f1f;border:1px solid #747775}
+.sbtn:focus-visible,.g-link:focus-visible,.who button:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px}
+.gate.busy .sbtn{opacity:.6;pointer-events:none}
+.g-fine{margin:0;font-size:14.5px;line-height:1.4;color:var(--ink-soft)}
+.g-fine a{color:var(--leather)}
+.g-msg{margin:0;min-height:1.2em;font-size:15px;color:var(--leather)}
+.g-link{background:none;border:0;font:italic 17px var(--text);color:var(--ink-soft);cursor:pointer;justify-self:center;min-height:40px;padding:0 12px}
+.who{margin:4px 0 0;font-size:14px;color:var(--gold);opacity:.85}
+.who button{background:none;border:0;color:var(--gold-2);text-decoration:underline;font:inherit;cursor:pointer;min-height:32px}
+.home{position:absolute;left:max(14px,env(safe-area-inset-left,0px));top:12px;font-family:var(--caps);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px 4px;min-height:44px;display:flex;align-items:center}
+.top{position:relative}
+</style>
+</head>
+<body>
+
+
+<div class="scene" id="scene">
+  <div class="top"><a class="home" href="./">&#8592; Home</a><div><p>Nile Crafted Studio</p><p class="who" id="who" hidden>Signed in as <span id="whoName"></span> · <button type="button" id="signOut">Sign out</button></p><p class="tip" id="tip"></p></div></div>
+  <div class="stage" id="stage">
+    <div class="tilt" id="tilt">
+      <div class="book" id="book" aria-label="Storybook of Randa's work" role="region">
+        <div class="shadow"></div>
+        <div class="board"></div>
+        <div class="ribbon"></div>
+        <div class="block"></div>
+
+        <!-- leaf 0: cover / inside cover -->
+        <div class="leaf" data-i="0">
+          <div class="face front cover">
+            <div class="spine-shine"></div><span class="cap tr"></span><span class="cap br"></span>
+            <div class="cover-in">
+              <span class="corner tl" aria-hidden="true"><svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 56V14Q4 4 14 4h42"/><path d="M10 50V18q0-8 8-8h32"/><path d="M14 24c6 0 10-4 10-10M24 14c0 8 6 12 12 12M14 24c0 6 4 10 10 10"/><circle cx="24" cy="24" r="2.6" fill="currentColor"/><path d="M36 26c4 0 7-2 8-6M24 34c0 4-2 7-6 8"/></svg></span><span class="corner tr" aria-hidden="true"><svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 56V14Q4 4 14 4h42"/><path d="M10 50V18q0-8 8-8h32"/><path d="M14 24c6 0 10-4 10-10M24 14c0 8 6 12 12 12M14 24c0 6 4 10 10 10"/><circle cx="24" cy="24" r="2.6" fill="currentColor"/><path d="M36 26c4 0 7-2 8-6M24 34c0 4-2 7-6 8"/></svg></span><span class="corner bl" aria-hidden="true"><svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 56V14Q4 4 14 4h42"/><path d="M10 50V18q0-8 8-8h32"/><path d="M14 24c6 0 10-4 10-10M24 14c0 8 6 12 12 12M14 24c0 6 4 10 10 10"/><circle cx="24" cy="24" r="2.6" fill="currentColor"/><path d="M36 26c4 0 7-2 8-6M24 34c0 4-2 7-6 8"/></svg></span><span class="corner br" aria-hidden="true"><svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 56V14Q4 4 14 4h42"/><path d="M10 50V18q0-8 8-8h32"/><path d="M14 24c6 0 10-4 10-10M24 14c0 8 6 12 12 12M14 24c0 6 4 10 10 10"/><circle cx="24" cy="24" r="2.6" fill="currentColor"/><path d="M36 26c4 0 7-2 8-6M24 34c0 4-2 7-6 8"/></svg></span>
+              <div class="medal"><img src="mark.png" alt=""></div>
+              <h1>Crafted Tales</h1>
+              <p class="sub">The work of Randa</p>
+            </div>
+          </div>
+          <div class="face back endpaper">
+            <div class="plate">
+              <p class="ex">Ex Libris</p>
+              <p class="eyebrow" style="font-size:2.6cqw;letter-spacing:.2em">Made with heart<br>Designed for your story</p>
+              <div class="rule" style="width:100%"></div>
+              <ol class="toc">
+                <li><button type="button" data-go="2"><span>I</span>Personalized Apparel<i></i><span>3</span></button></li>
+                <li><button type="button" data-go="3"><span>II</span>Gifts &amp; Keepsakes<i></i><span>5</span></button></li>
+                <li><button type="button" data-go="4"><span>III</span>Events &amp; Celebrations<i></i><span>7</span></button></li>
+                <li><button type="button" data-go="5"><span>IV</span>Business &amp; Group<i></i><span>9</span></button></li>
+                <li><button type="button" data-go="6"><span>V</span>Still being written<i></i><span>11</span></button></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- leaf 1: once upon a time / apparel picture -->
+        <div class="leaf" data-i="1">
+          <div class="face front page"><div class="pg">
+            <p class="eyebrow">Prologue</p>
+            <h2>Once upon a time</h2>
+            <div class="rule"></div>
+            <p class="drop">In a little studio on Staten Island, a wife, a mother of three and a certified wedding and event planner turned her love of creativity into keepsakes.</p>
+            <p>There, names and dates and small details become pieces you can hold: apparel, gifts and keepsakes for the moments that matter most.</p>
+            <p class="sign">Randa</p>
+          </div><span class="folio">1</span></div>
+          <div class="face back page"><div class="pg">
+            <p class="chap">I</p>
+            <div class="frame"><img src="cat-apparel.jpg" alt="Cream sweatshirt embroidered with MAMA and a heart"></div>
+            <p class="caption">Embroidered by hand, for a new mama</p>
+          </div><span class="folio">2</span></div>
+        </div>
+
+        <!-- leaf 2 -->
+        <div class="leaf" data-i="2">
+          <div class="face front page"><div class="pg">
+            <p class="eyebrow">Chapter I</p>
+            <h2>Personalized Apparel</h2>
+            <div class="rule"></div>
+            <p class="drop">Soft cream, gold thread, one word that says everything. A sweatshirt stitched with MAMA and a small heart.</p>
+            <p>Tees and pajamas follow the same story: matching sets for a family trip, robes for getting-ready photos, a shirt with your child's name for their birthday.</p>
+          </div><span class="folio">3</span></div>
+          <div class="face back page"><div class="pg">
+            <p class="chap">II</p>
+            <div class="frame"><img src="cat-gifts.jpg" alt="Monogrammed mug beside a ribbon-tied gift box"></div>
+            <p class="caption">A monogram in gold, ribbon tied</p>
+          </div><span class="folio">4</span></div>
+        </div>
+
+        <!-- leaf 3 -->
+        <div class="leaf" data-i="3">
+          <div class="face front page"><div class="pg">
+            <p class="eyebrow">Chapter II</p>
+            <h2>Gifts &amp; Keepsakes</h2>
+            <div class="rule"></div>
+            <p class="drop">A mug wears the gold N among painted blossoms, and a blush box waits beside it with its ribbon tied.</p>
+            <p>Gifts made to be kept: for parents, for bridesmaids, for anyone who helped make the day, finished with care from color to ribbon.</p>
+          </div><span class="folio">5</span></div>
+          <div class="face back page"><div class="pg">
+            <p class="chap">III</p>
+            <div class="frame"><img src="cat-events.jpg" alt="Acrylic table number sign among candles and peonies"></div>
+            <p class="caption">Table three, by candlelight</p>
+          </div><span class="folio">6</span></div>
+        </div>
+
+        <!-- leaf 4 -->
+        <div class="leaf" data-i="4">
+          <div class="face front page"><div class="pg">
+            <p class="eyebrow">Chapter III</p>
+            <h2>Events &amp; Celebrations</h2>
+            <div class="rule"></div>
+            <p class="drop">Candles, peonies and a clear acrylic sign that tells each guest where they belong.</p>
+            <p>Table numbers, signs and party touches for showers, birthdays and weddings, all designed around your names, your colors and your date.</p>
+          </div><span class="folio">7</span></div>
+          <div class="face back page"><div class="pg">
+            <p class="chap">IV</p>
+            <div class="frame"><img src="cat-business.jpg" alt="Folded apparel embroidered with the Nile Crafted Studio logo"></div>
+            <p class="caption">A logo, stitched and folded</p>
+          </div><span class="folio">8</span></div>
+        </div>
+
+        <!-- leaf 5 -->
+        <div class="leaf" data-i="5">
+          <div class="face front page"><div class="pg">
+            <p class="eyebrow">Chapter IV</p>
+            <h2>Business &amp; Group Orders</h2>
+            <div class="rule"></div>
+            <p class="drop">The same care, multiplied. A logo embroidered and folded, ready for a whole team.</p>
+            <p>Branded apparel for a business, matching sets for a bridal party, pieces for every guest. Tell Randa how many, and she plans the rest with you.</p>
+          </div><span class="folio">9</span></div>
+          <div class="face back page"><div class="pg">
+            <p class="chap">V</p>
+            <div class="frame empty"><div>✦</div></div>
+            <p class="caption">This page is waiting for its picture</p>
+          </div><span class="folio">10</span></div>
+        </div>
+
+        <!-- leaf 6 -->
+        <div class="leaf" data-i="6">
+          <div class="face front page"><div class="pg center">
+            <p class="eyebrow">Chapter V</p>
+            <h2>Still being written</h2>
+            <div class="rule" style="width:70%"></div>
+            <p>Randa's newest pieces will be pressed into these pages soon.</p>
+            <p class="soft">Every piece begins with your story. Yours could be the next chapter.</p>
+            <div class="cta">
+              <a href="https://www.nilecraftedstudio.com/#quote" target="_blank" rel="noopener noreferrer">Begin your story</a>
+              <a class="alt" href="https://instagram.com/nilecraftedstudio" target="_blank" rel="noopener noreferrer">More on Instagram, @nilecraftedstudio</a>
+            </div>
+          </div><span class="folio">11</span></div>
+          <div class="face back endpaper"></div>
+        </div>
+
+        <button class="book-btn" id="openBtn" type="button" aria-label="Open the storybook"></button>
+      </div>
+    </div>
+    <p class="hint" id="hint">Touch the book to open it</p>
+  </div>
+  <div class="bar" id="bar">
+    <button type="button" id="prev" aria-label="Previous page">&#8592;</button>
+    <span class="where" id="where" aria-live="polite">Contents</span>
+    <button type="button" id="next" aria-label="Next page">&#8594;</button>
+    <button type="button" class="closeb" id="closeBtn">Close</button>
+  </div>
+</div>
+
+<div class="gate" id="gate" hidden role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+  <div class="gate-card">
+    <p class="g-eyebrow">Crafted Tales</p>
+    <h2 id="gateTitle">Sign in to open the storybook</h2>
+    <p class="g-lede">A quick sign-in, and Randa’s work is yours to page through.</p>
+    <button type="button" class="sbtn apple" id="signApple"><svg viewBox="0 0 17 20" aria-hidden="true"><path fill="currentColor" d="M14.06 10.62c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.65.8-3.33.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.62 1.11 8.79.73 1.06 1.6 2.25 2.75 2.21 1.1-.04 1.52-.71 2.86-.71 1.33 0 1.71.71 2.88.69 1.19-.02 1.94-1.08 2.67-2.14.84-1.23 1.19-2.42 1.21-2.48-.03-.01-2.32-.89-2.36-3.55zM11.88 4.16c.61-.74 1.02-1.76.91-2.78-.88.04-1.94.59-2.57 1.32-.56.65-1.06 1.69-.93 2.69.98.08 1.98-.5 2.59-1.23z"/></svg>Continue with Apple</button>
+    <button type="button" class="sbtn google" id="signGoogle"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Continue with Google</button>
+    <p class="g-msg" id="gateMsg" role="status" aria-live="polite"></p>
+    <p class="g-fine">We save your name and email so Randa knows who visited and can follow up if you’d like a piece of your own. No mailing list without asking. <a href="privacy.html">Privacy note</a></p>
+    <button type="button" class="g-link" id="gateClose">Not now</button>
+  </div>
+</div>
+<canvas id="dust" aria-hidden="true"></canvas>
+
+
+<script src="nile-firebase-config.js?v=20261107" defer></script>
+<script type="module" src="nile-auth.js?v=20261107"></script>
+<script src="storybook.js?v=20261107" defer></script>
+</body>
+</html>
