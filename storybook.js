@@ -141,6 +141,7 @@
         c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request' ? 'The sign-in window closed before it finished. Try again whenever you’re ready.' :
         c==='auth/popup-blocked' ? 'Your browser blocked the sign-in window. Allow pop-ups for this site, then try again.' :
         c==='auth/account-exists-with-different-credential' ? 'That email already signed in with the other button. Please use that one.' :
+        c==='auth/operation-not-allowed' ? (which==='apple' ? 'Apple sign-in is coming soon. Please continue with Google for now.' : 'This sign-in isn’t switched on yet. Please try the other button.') :
         'Sign-in didn’t go through. Try again, or text us at (862) 414-0499.';
     });
   }
@@ -155,7 +156,8 @@
 
   document.getElementById('openBtn').addEventListener('click',function(e){
     var r=book.getBoundingClientRect(), x=e.clientX||r.left+r.width*.75, y=e.clientY||r.top+r.height/2;
-    if(user) openBook(x,y); else openGate(x,y);
+    // Until the Firebase settings are pasted in, the book opens without sign-in.
+    if(user || !configured) openBook(x,y); else openGate(x,y);
   });
   nextB.addEventListener('click',next); prevB.addEventListener('click',prev);
   document.getElementById('closeBtn').addEventListener('click',closeBook);

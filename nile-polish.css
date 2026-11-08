@@ -13,3 +13,19 @@ footer .foot nav a,footer .foot-contact a{display:inline-flex;align-items:center
 /* Readable minimum sizes */
 .announce .eyebrow{font-size:11.5px}
 .gl-block .founder-plaque span,.founder-plaque span{font-size:11px}
+
+/* Crafted Tales storybook entrance in the gallery (Nov 8, 2026) */
+.tale-link{grid-column:1/-1;display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:6px;text-decoration:none;color:#f3dca4;
+  background:radial-gradient(90% 140% at 15% 0%,rgba(255,220,200,.14),transparent 60%),linear-gradient(90deg,#3e1424,#5a1f33 12%,#5a1f33 88%,#4a1829);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.35),inset 0 0 0 5px #5a1f33,inset 0 0 0 6px #d8b26a;transition:transform .25s ease,box-shadow .25s ease}
+.tale-link:hover{transform:translateY(-2px);box-shadow:inset 0 0 0 1px rgba(0,0,0,.35),inset 0 0 0 5px #5a1f33,inset 0 0 0 6px #f3dca4,0 10px 24px rgba(62,20,36,.25)}
+.tale-link:focus-visible{outline:2px solid #a87a3d;outline-offset:3px}
+.tale-book{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 40% 35%,#fff6e3,#efdcb5 60%,#c9a466);box-shadow:0 0 0 2px #9a7233,0 0 0 3px #d8b26a}
+.tale-book img{width:40px;height:40px}
+.tale-text{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.tale-text .eyebrow{color:#d8b26a;font-size:11px;letter-spacing:.2em}
+.tale-text strong{font-family:var(--serif);font-weight:500;font-size:clamp(22px,2vw,28px);line-height:1.05;color:#fbefd2}
+.tale-sub{font-family:var(--serif);font-style:italic;font-size:16px;color:#f3dca4;opacity:.9}
+.tale-go{flex:none;font-family:var(--sans);font-size:12px;letter-spacing:.08em;padding:10px 16px;border-radius:999px;background:#e6c3b8;color:var(--ink);white-space:nowrap}
+@media (max-width:520px){.tale-link{flex-wrap:wrap;gap:12px}.tale-go{flex-basis:100%;text-align:center;min-height:44px;display:flex;align-items:center;justify-content:center}}
+@media (prefers-reduced-motion:reduce){.tale-link{transition:none}.tale-link:hover{transform:none}}
